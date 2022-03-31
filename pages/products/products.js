@@ -10,7 +10,7 @@ if (localStorage.getItem("username") !== null) {
 function generateProductHTML(product) {
   return `
     <div class="product">
-      <div class="productImage" onclick="() => openModal(product)">
+      <div class="productImage" data-id="${product.id}" onclick="openModal()">
         <img src="${product.image}" alt="${product.content}">
       </div>
       <div class="productDetails">

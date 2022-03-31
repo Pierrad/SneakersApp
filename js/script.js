@@ -23,6 +23,10 @@ mailInput.addEventListener("input", function () {
 });
 
 function showSuccess() {
+  submit.disabled = true;
+  mailInput.classList.remove("false");
+  passwordInput.classList.remove("false");
+
   successBox.classList.add("show");
   errorBox.classList.remove("show");
   setTimeout(() => {
@@ -31,6 +35,9 @@ function showSuccess() {
 }
 
 function showError() {
+  mailInput.classList.add("false");
+  passwordInput.classList.add("false");
+
   errorBox.classList.add("show");
   successBox.classList.remove("show");
   setTimeout(() => {
@@ -38,11 +45,21 @@ function showError() {
   }, 5000);
 }
 
+function showPending() {
+  submitLabel.classList.add("hidden");
+  spinner.classList.remove("hidden");
+}
+
+function hidePending() {
+  submitLabel.classList.remove("hidden");
+  spinner.classList.add("hidden");
+}
+
+
 function login(event) {
   event.preventDefault();
 
-  submitLabel.classList.add("hidden");
-  spinner.classList.remove("hidden");
+  showPending();
 
   const headers = new Headers();
   headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
@@ -63,15 +80,9 @@ function login(event) {
       return response.json();
     })
     .then((res) => {
-      submitLabel.classList.remove("hidden");
-      spinner.classList.add("hidden");
-      
+      hidePending();      
       if (res.success) {
-        submit.disabled = true;
-        mailInput.classList.remove("false");
-        passwordInput.classList.remove("false");
         showSuccess();
-
         const username = res.data.user.username;
         const token = res.data.user.token.token;
         const expiration = res.data.user.token.expiration;
@@ -81,8 +92,6 @@ function login(event) {
         window.location.href = "./pages/products/products.html";
       } else {
         showError();
-        mailInput.classList.add("false");
-        passwordInput.classList.add("false");
       }
     })
     .catch(function (error) {
