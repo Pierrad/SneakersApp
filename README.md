@@ -2,7 +2,7 @@
 
 ## Installation
 
-- Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier '''login.html'''
+- Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```login.html```
 - Sinon, il faut utiliser Mamp afin de lancer un serveur en local
 
 ## Utilisation
