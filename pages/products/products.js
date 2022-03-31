@@ -83,10 +83,7 @@ function getOneProduct(productId) {
     cache: "default",
   };
 
-  const product = fetch(
-    `https://m413.joss-coupet.eu/products/${productId}`,
-    config
-  )
+  const product = fetch(`https://m413.joss-coupet.eu/products/${productId}`, config)
     .then((response) => {
       return response.json();
     })
@@ -106,6 +103,12 @@ function getOneProduct(productId) {
   return product;
 }
 
+/**
+ * Pour une raison inconnue, la modification du produit ne fonctionne pas. 
+ * La charge utile de la requête contient bien le bon body avec les informations à modifier et on reçoit bien une réponse 200.
+ * Mais les données sont toujours les mêmes après le rechargement de la page.
+ * Sur postman, la modification fonctionne bien.
+ */
 function modifyProduct(prod) {
   const headers = new Headers();
   headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
@@ -131,7 +134,6 @@ function modifyProduct(prod) {
       return response.json();
     })
     .then((res) => {
-      console.log(res);
       if (res.success === true) {
         window.location.reload();
       } else {
