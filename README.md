@@ -21,4 +21,8 @@ Pour l'instant, on peut :
 - Se connecter
 - Être redirigé sur une page de produits
 - Ouvrir une modal pour modifier un produit
- 
+
+Pour une raison inconnue, la modification du produit ne fonctionne pas. 
+La charge utile de la requête contient bien le bon body avec les informations à modifier et on reçoit bien une réponse 200.
+Mais les données sont toujours les mêmes après le rechargement de la page.
+Sur postman, la modification fonctionne bien.
