@@ -20,7 +20,5 @@ Pour se connecter, il est possible d'utiliser les identifiants suivants :
 Pour l'instant, on peut : 
 - Se connecter
 - Être redirigé sur une page de produits
-
-## TODO
-
 - Ouvrir une modal pour modifier un produit
+ 
