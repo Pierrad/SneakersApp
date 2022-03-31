@@ -8,13 +8,16 @@ body {
 }
 
 #title {
-  font-size: 20px;
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 10px;
+  background-image: linear-gradient(45deg, #ddd765, #af4261);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .numberOfProducts {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 300;
   font-style: italic;
   margin-bottom: 2rem;
@@ -59,19 +62,23 @@ body {
 }
 
 .productPrice {
+  font-size: 15px;
+  font-weight: 600;
   padding: 0.5rem;
   border-radius: 10px;
   background-color: #f5f5f5;
+  filter: drop-shadow(rgba(0, 0, 0, 0.04) 0px 0.2rem 0.6rem);
 }
 
 .productBrand {
+  font-size: 14px;
   background: linear-gradient(90deg, rgba(209,55,105,1) 0%, rgba(227,88,103,1) 49%, rgba(234,105,103,1) 100%);
   padding: 0.2rem 0.5rem;
   border-radius: 10px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   width: max-content;
   color:white;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .modal {
@@ -90,16 +97,53 @@ body {
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
-  padding: 20px;
+  padding: 2rem;
   border: 1px solid #888;
-  width: 80%;
+  width: 30rem;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.modalTitle {
+  margin-bottom: 1rem;
+} 
+
+.modalInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalInput {
+  width: 20rem;
+  margin-bottom: 1rem;
+  height: 1rem;
+  border-radius: 0.3rem;
+  border: none;
+  padding: 1rem;
+  font-size: 0.8rem;
+  background-color: #f2f2f2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.modalButton {
+  width: 10rem;
+  height: 2rem;
+  border-radius: 0.3rem;
+  border: none;
+  background: linear-gradient(90deg, rgba(209,55,105,1) 0%, rgba(227,88,103,1) 49%, rgba(234,105,103,1) 100%);
+  color: white;
+  cursor: pointer;
 }
 
 .close {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  position: absolute;
+  top: 5%;
+  right: 3%;
 }
 
 .close:hover,
@@ -107,6 +151,10 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.hide {
+  display: none;
 }
 
 @media screen and (max-width: 640px) {
@@ -136,5 +184,13 @@ body {
   
   .productOwner {
     word-break: break-word;
+  }
+
+  .modal-content {
+    width: 20rem;
+  }
+
+  .modalInput {
+    width: 15rem;
   }
 }
