@@ -1,5 +1,9 @@
 # SneakersApp
 
+## Production
+
+Une version en ligne est disponible à l'adresse suivante : https://sneakers-app.vercel.app/
+
 ## Installation
 
 - Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```login.html```
