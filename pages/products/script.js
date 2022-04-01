@@ -1,5 +1,5 @@
 if (localStorage.getItem("token") === null || document.cookie.indexOf("authToken") === -1) {
-  window.location.href = "../../index.html";
+  window.location.href = "/pages/login/login.html";
 }
 
 if (localStorage.getItem("username") !== null) {

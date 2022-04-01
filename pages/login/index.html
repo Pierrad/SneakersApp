@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width" />
+  <title>Login page</title>
+  <link rel="stylesheet" href="../../style/reset.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <img src="../../assets/avatar.jpeg" id="avatar">
+      <h1 class="title">User Log in</h1>
+      <form class="form" id="loginForm">
+        <div class="inputWithIcon">
+          <input id="email" type="text" name="email" placeholder="User ID" />
+          <img src="../../assets/user.webp" class="icon" />
+        </div>
+        <div class="inputWithIcon">
+          <input id="password" type="password" name="password" placeholder="Password" />
+          <img src="../../assets/key.png" class="icon" />
+        </div>
+        <button id="submit" onclick="login(event)">
+          <p id="buttonText">LOGIN</p>
+          <svg id="spinner" class="hidden" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45"/>
+          </svg>
+        </button>
+      </form>
+      <p>Forgot <a href="/forgetPassword.html">Password</a>?</p>
+      <p>Don't have an account ? <a href="/pages/register/index.html">Click here</a></p>
+    </div>
+    <div class="messageBox" id="success">
+      <p>Login Successful!</p>
+    </div>
+    <div class="messageBox" id="error">
+      <p>Login Failed!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

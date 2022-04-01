@@ -89,7 +89,7 @@ function login(event) {
         localStorage.setItem("username", username);
         localStorage.setItem("token", String(token));
         document.cookie = `authToken=${res.data.user.token.token};max-age=${expiration};path=/`;
-        window.location.href = "./pages/products/products.html";
+        window.location.href = "/pages/products/index.html";
       } else {
         showError();
       }

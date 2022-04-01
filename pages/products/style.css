@@ -12,6 +12,7 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
   background-image: linear-gradient(45deg, #ddd765, #af4261);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

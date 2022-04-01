@@ -92,7 +92,7 @@ const validateEmail = (email) => {
           localStorage.setItem("username", username);
           localStorage.setItem("token", String(token));
           document.cookie = `authToken=${res.data.user.token.token};max-age=${expiration};path=/`;
-          window.location.href = "../products/products.html";
+          window.location.href = "./pages/products/products.html";
         } else {
           showError();
         }
