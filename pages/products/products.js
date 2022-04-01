@@ -103,14 +103,9 @@ function getOneProduct(productId) {
   return product;
 }
 
-/**
- * Pour une raison inconnue, la modification du produit ne fonctionne pas. 
- * La charge utile de la requête contient bien le bon body avec les informations à modifier et on reçoit bien une réponse 200.
- * Mais les données sont toujours les mêmes après le rechargement de la page.
- * Sur postman, la modification fonctionne bien.
- */
 function modifyProduct(prod) {
   const headers = new Headers();
+  headers.append("Content-type", "application/json");
   headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
   headers.append("Authorization", localStorage.getItem("token"));
 
@@ -118,15 +113,15 @@ function modifyProduct(prod) {
     content: {
       name: prod.name,
       brand: prod.brand,
-      price: prod.price,
-    },
+      price: prod.price
+    }
   });
 
   const conf = {
     method: "POST",
     headers,
     mode: "cors",
-    body,
+    body: body,
   };
 
   fetch(`https://m413.joss-coupet.eu/products/${prod.productId}`, conf)
