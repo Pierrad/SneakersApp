@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width" />
+  <title>Landing</title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="../../style/reset.css" />
+  <link rel="stylesheet" href="../../components/Header/style.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="Header"></div>
+  <div class="container">
+    <div class="hero">
+      <h2 class="subtitle">Sneaker Store</h2>
+      <h1 class="title">
+        Sneaker <span class="specialTitle">Collection</span>
+      </h1>
+
+      <button class="ctaBuy">Buy now</button>
+
+      <h1 class="backgroundTitle">NIKE</h1>
+
+      <img class="backgroundImage" src="../../assets/images/shoe.png" />
+
+
+      <svg class="redCircle" width="500px" height="500px">
+        <defs>
+          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+            <feGaussianBlur stdDeviation="60" />
+          </filter>
+        </defs>
+        <circle cx="250" cy="250" r="200" fill="#FFD2E6" opacity="0.4" filter="url(#blur)"></circle>
+      </svg>
+
+      <svg class="yellowCircle" width="500px" height="500px">
+        <defs>
+          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+            <feGaussianBlur stdDeviation="60" />
+          </filter>
+        </defs>
+        <circle cx="250" cy="250" r="200" fill="#FEF3C2" opacity="0.4" filter="url(#blur)"></circle>
+      </svg>
+
+      <svg class="blueCircle" width="500px" height="500px">
+        <defs>
+          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+            <feGaussianBlur stdDeviation="60" />
+          </filter>
+        </defs>
+        <circle cx="250" cy="250" r="200" fill="#B7FFFB" opacity="0.4" filter="url(#blur)"></circle>
+      </svg>
+
+      <div class="littleCircle"></div>
+      <div class="littleRectangle"></div>
+      <div class="littleTriangle"></div>
+
+      <div class="scrollBarIndicator">
+        <div class="scrollBarBox">
+          <div class="scrollBar"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="Footer"></div>
+  <script src="../../components/Header/script.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>

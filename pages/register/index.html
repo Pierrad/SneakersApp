@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset=utf-8 />
-        <meta name="viewport" content="width=device-width" />
-        <title>Register page</title>
-        <link rel="stylesheet" href="../../style/reset.css" />
-        <link rel="stylesheet" href="./style.css" />
-      </head>
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width" />
+  <title>Register page</title>
+  <link rel="stylesheet" href="../../style/reset.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
 <body>
   <div class="container">
     <div class="card">
-      <img src="../../assets/avatar.jpeg" id="avatar">
+      <img src="../../assets/images/avatar.jpeg" id="avatar">
       <h1 class="title">User Register</h1>
       <form class="form" id="registerForm">
         <div class="inputWithIcon">
           <input id="email" type="email" name="email" placeholder="User ID" />
-          <img src="../../assets/user.webp" class="icon" />
+          <img src="../../assets/images/user.webp" class="icon" />
         </div>
         <div class="inputWithIcon">
           <input id="password" type="password" name="password" placeholder="Password" />
-          <img src="../../assets/key.png" class="icon" />
+          <img src="../../assets/images/key.png" class="icon" />
         </div>
         <div class="inputWithIcon">
-            <input id="username" type="text" name="username" placeholder="Username" />
+          <input id="username" type="text" name="username" placeholder="Username" />
         </div>
         <button id="submit" onclick="register(event)">
           <p id="buttonText">REGISTER</p>
           <svg id="spinner" class="hidden" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45"/>
+            <circle cx="50" cy="50" r="45" />
           </svg>
         </button>
       </form>
