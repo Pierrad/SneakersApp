@@ -1,0 +1,199 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 980px;
+  margin: 2rem auto;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  font-weight: medium;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  z-index: 10;
+}
+
+.specialTitle {
+  color: #FF000E;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.ctaBuy {
+  cursor: pointer;
+  color: white;
+  background: black;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  position: relative;
+  outline: none;
+  z-index: 10;
+}
+
+
+.ctaBuy:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 2rem;
+}
+
+.ctaBuy:active {
+  color: #000
+}
+
+.ctaBuy:active:after {
+  background: transparent;
+}
+
+.ctaBuy:hover:before {
+  opacity: 1;
+}
+
+.ctaBuy:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 2rem;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.backgroundTitle {
+  color: rgb(201, 215, 201);
+  font-size: 30rem;
+  line-height: 1rem;
+  z-index: -1;
+  margin-top: 15rem;
+  opacity: 0.2;
+}
+
+.backgroundImage {
+  width: 70%;
+  height: auto;
+  margin-top: -10rem;
+  filter: drop-shadow(rgba(0, 0, 0, 0.08) 0px 0.2rem 0.6rem);
+  z-index: 10;
+}
+
+.redCircle {
+  position: absolute;
+  top: -5%;
+  right: 10%;
+  z-index: 2;
+}
+
+.yellowCircle {
+  position: absolute;
+  top: 55%;
+  left: 6%;
+  z-index: 2;
+}
+
+.blueCircle {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  z-index: 2;
+}
+
+.littleCircle {
+  position: absolute;
+  top: 13%;
+  right: 10%;
+  z-index: 10;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: #FF0007;
+  opacity: 0.8;
+}
+
+.littleRectangle {
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  z-index: 10;
+  padding: 0.3rem;
+  border: 3px solid #FF0007;
+  opacity: 0.8;
+  transform: rotate(-20deg);
+}
+
+.littleTriangle {
+  position: absolute;
+  top: 80%;
+  right: 15%;
+  z-index: 10;
+  opacity: 0.8;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 9px 18px 9px;
+  border-color: transparent transparent #ff0009 transparent;
+  transform: rotate(20deg);
+}
+
+.scrollBarIndicator {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  width: 2px;
+  height: 15rem;
+  background: #E9E7E0;
+  opacity: 0.8;
+  z-index: -1;
+  transform: translateY(-50%);
+}
+
+.scrollBarBox {
+  position: relative;
+  width: 100%;
+  height: 87%;
+}
+
+.scrollBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  background: #FF0000;
+  opacity: 0.8;
+  z-index: -1;
+  border-radius: 1rem;
+}
