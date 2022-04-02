@@ -197,3 +197,56 @@ body {
   z-index: -1;
   border-radius: 1rem;
 }
+
+@media screen and (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    position: relative;
+  }
+
+  .hero {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .backgroundTitle {
+    font-size: 10rem;
+    margin-top: 8rem;
+  }
+
+  .backgroundImage {
+    margin-top: -4rem;
+  }
+
+  .redCircle {
+    position: absolute;
+    top: -8%;
+    right: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
+  
+  .yellowCircle {
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
+  
+  .blueCircle {
+    position: absolute;
+    top: 70%;
+    left: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
+  
+}
