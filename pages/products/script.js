@@ -1,7 +1,7 @@
 let NUMBER_OF_PRODUCTS = 6
 
 if (localStorage.getItem("token") === null || document.cookie.indexOf("authToken") === -1) {
-  window.location.href = "/pages/login/login.html";
+  window.location.href = "/pages/login/index.html";
 }
 
 if (localStorage.getItem("username") !== null) {
