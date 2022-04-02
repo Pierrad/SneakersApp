@@ -4,6 +4,10 @@
 
 Une version en ligne est disponible à l'adresse suivante : https://sneakers-app.vercel.app/
 
+## Pre-production
+
+Une version en ligne avec les dernières fonctionnalités en cours de développement est disponible ici : https://sneakers-app-preprod.vercel.app/
+
 ## Installation
 
 - Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```index.html```
