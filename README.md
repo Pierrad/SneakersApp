@@ -6,7 +6,7 @@ Une version en ligne est disponible à l'adresse suivante : https://sneakers-app
 
 ## Installation
 
-- Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```login.html```
+- Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```index.html```
 - Sinon, il faut utiliser Mamp afin de lancer un serveur en local
 
 ## Utilisation
