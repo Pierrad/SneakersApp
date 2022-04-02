@@ -10,6 +10,7 @@ Une version en ligne avec les dernières fonctionnalités en cours de développe
 
 ## Installation
 
+- Cloner le projet
 - Sur VSCode, il est possible d'utiliser l'extension 'Live Server' et de lancer un serveur depuis le fichier ```index.html```
 - Sinon, il faut utiliser Mamp afin de lancer un serveur en local
 
