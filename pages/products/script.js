@@ -1,3 +1,5 @@
+let NUMBER_OF_PRODUCTS = 6
+
 if (localStorage.getItem("token") === null || document.cookie.indexOf("authToken") === -1) {
   window.location.href = "/pages/login/login.html";
 }
@@ -48,7 +50,7 @@ function getProducts() {
     cache: "default",
   };
 
-  fetch("https://m413.joss-coupet.eu/products", config)
+  productsList = fetch("https://m413.joss-coupet.eu/products", config)
     .then((response) => {
       return response.json();
     })
@@ -67,7 +69,12 @@ function getProducts() {
         };
       });
 
-      newProducts.forEach(addProductToPage);
+      newProducts.forEach((newP, item) => {
+        if(item< NUMBER_OF_PRODUCTS){
+          addProductToPage(newP)
+        }
+      });
+      localStorage.setItem('products', JSON.stringify(newProducts))
     });
 }
 
@@ -184,3 +191,27 @@ window.onclick = function (event) {
 };
 
 getProducts();
+
+const loadmore = document.querySelector('.loadMore');
+
+loadmore.addEventListener('click', (e) => {
+  const productsList = JSON.parse(localStorage.getItem('products'))
+  if(productsList!==undefined){
+   
+    for(let i = NUMBER_OF_PRODUCTS; i<NUMBER_OF_PRODUCTS+4; i++){
+      addProductToPage(productsList[i])
+    }
+    NUMBER_OF_PRODUCTS+=4
+    console.log(NUMBER_OF_PRODUCTS)
+    console.log(productsList.length)
+    if(NUMBER_OF_PRODUCTS +4 >= productsList.length){
+      for(let j = NUMBER_OF_PRODUCTS; j<productsList.length; j++){
+        addProductToPage(productsList[j])
+        
+      }
+      NUMBER_OF_PRODUCTS = NUMBER_OF_PRODUCTS+(productsList.length-NUMBER_OF_PRODUCTS)
+      e.target.style.display = 'none';
+    }
+}
+
+})
