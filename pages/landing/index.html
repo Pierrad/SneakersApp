@@ -8,6 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="../../style/reset.css" />
   <link rel="stylesheet" href="../../components/Header/style.css" />
+  <link rel="stylesheet" href="../../components/Footer/style.css" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -19,55 +20,99 @@
       <h1 class="title">
         Sneaker <span class="specialTitle">Collection</span>
       </h1>
-
       <button class="ctaBuy">Buy now</button>
-
       <h1 class="backgroundTitle">NIKE</h1>
-
       <img class="backgroundImage" src="../../assets/images/shoe.png" />
-
-      <svg class="redCircle" width="500px" height="500px">
-        <defs>
-          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
-            <feGaussianBlur stdDeviation="60" />
-          </filter>
-        </defs>
-        <circle cx="250" cy="250" r="200" fill="#FFD2E6" opacity="0.4" filter="url(#blur)"></circle>
-      </svg>
-
-      <svg class="yellowCircle" width="500px" height="500px">
-        <defs>
-          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
-            <feGaussianBlur stdDeviation="60" />
-          </filter>
-        </defs>
-        <circle cx="250" cy="250" r="200" fill="#FEF3C2" opacity="0.4" filter="url(#blur)"></circle>
-      </svg>
-
-      <svg class="blueCircle" width="500px" height="500px">
-        <defs>
-          <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
-            <feGaussianBlur stdDeviation="60" />
-          </filter>
-        </defs>
-        <circle cx="250" cy="250" r="200" fill="#B7FFFB" opacity="0.4" filter="url(#blur)"></circle>
-      </svg>
-
-      <div class="littleCircle"></div>
-      <div class="littleRectangle"></div>
-      <div class="littleTriangle"></div>
-
-      <div class="scrollBarIndicator">
-        <div class="scrollBarBox">
-          <div class="scrollBar"></div>
-        </div>
-      </div>
     </div>
+
+    <div class="products">
+      <div class="productsTitleBox">
+        <h1 class="productsTitle">Nos <span class="specialTitle">sneakers</span></h1>
+        <h4 class="productDiscoverCtaBox">
+          <a class="productDiscoverCta" href="/pages/products/index.html">En découvrir plus</a>
+          <img class="productDiscoverCtaIcon" src="../../assets/images/arrow-left.svg" />
+        </h4>
+      </div>
+      <div class="someProducts"></div>
+    </div>
+
+    <!--Absolute position elements-->
+    <svg class="redCircle" width="500px" height="500px">
+      <defs>
+        <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+          <feGaussianBlur stdDeviation="60" />
+        </filter>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="#FFD2E6" opacity="0.4" filter="url(#blur)"></circle>
+    </svg>
+
+    <svg class="yellowCircle" width="500px" height="500px">
+      <defs>
+        <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+          <feGaussianBlur stdDeviation="60" />
+        </filter>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="#FEF3C2" opacity="0.4" filter="url(#blur)"></circle>
+    </svg>
+
+    <svg class="blueCircle" width="500px" height="500px">
+      <defs>
+        <filter x="-50%" y="-50%" width="500%" height="500%" id="blur">
+          <feGaussianBlur stdDeviation="60" />
+        </filter>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="#B7FFFB" opacity="0.4" filter="url(#blur)"></circle>
+    </svg>
+
+    <div class="littleCircle"></div>
+    <div class="littleRectangle"></div>
+    <div class="littleTriangle"></div>
 
 
   </div>
+
+  <div class="coloredContainer">
+    <div class="discoverUs">
+      <h1>À propos de <span class="specialTitle">nous</span></h1>
+
+      <div class="discoverCards">
+        <div class="discoverCard">
+          <div class="discoverCardImageWrapper">
+            <div class="discoverCardBackground" id="discoverCardBackground1"></div>
+            <img class="discoverCardImage" src="../../assets/images/sneaker-discover-1.png" />
+          </div>
+          <h3 class="discoverCardTitle">Lorem ipsum dolor</h3>
+          <p class="discoverCardText">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+        <div class="discoverCard">
+          <div class="discoverCardImageWrapper">
+            <div class="discoverCardBackground" id="discoverCardBackground2"></div>
+            <img class="discoverCardImage" src="../../assets/images/sneaker-discover-2.png" />
+          </div>
+          <h3 class="discoverCardTitle">Lorem ipsum dolor</h3>
+          <p class="discoverCardText">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+        <div class="discoverCard">
+          <div class="discoverCardImageWrapper">
+            <div class="discoverCardBackground" id="discoverCardBackground3"></div>
+            <img class="discoverCardImage" src="../../assets/images/sneaker-discover-3.png" />
+          </div>
+          <h3 class="discoverCardTitle">Lorem ipsum dolor</h3>
+          <p class="discoverCardText">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollBarIndicator">
+    <div class="scrollBarBox">
+      <div class="scrollBar"></div>
+    </div>
+  </div>
+
   <footer class="Footer"></footer>
   <script src="../../components/Header/script.js"></script>
+  <script src="../../components/Footer/script.js"></script>
   <script src="./script.js"></script>
 </body>
 

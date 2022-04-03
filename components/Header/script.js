@@ -1,4 +1,5 @@
 const Header = document.getElementsByClassName("Header")[0];
+let isMobile = false;
 
 showHeader();
 
@@ -15,6 +16,7 @@ function showHeader() {
     Header.innerHTML = generateDesktopHeader();
   } else {
     Header.innerHTML = generateMobileHeader();
+    isMobile = true;
   }
 }
 
@@ -69,30 +71,33 @@ function redirectToLanding() {
   window.location.href = "/pages/landing/index.html";
 }
 
-const burgerIcon = document.getElementById("burgerIcon");
-const returnIcon = document.getElementById("returnIcon");
+if (isMobile) {
+  const burgerIcon = document.getElementById("burgerIcon");
+  const returnIcon = document.getElementById("returnIcon");
 
-burgerIcon.addEventListener("click", handleMobileMenuOpen);
-returnIcon.addEventListener("click", handleMobileMenuClose);
-burgerIcon.addEventListener("touchstart", handleMobileMenuOpen);
-returnIcon.addEventListener("touchstart", handleMobileMenuClose);
+  burgerIcon.addEventListener("click", handleMobileMenuOpen);
+  returnIcon.addEventListener("click", handleMobileMenuClose);
+  burgerIcon.addEventListener("touchstart", handleMobileMenuOpen);
+  returnIcon.addEventListener("touchstart", handleMobileMenuClose);
 
-function handleMobileMenuOpen(e) {
-  e.preventDefault();
-  const mobileLinks = document.getElementsByClassName("headerMobileLinks")[0];
-  mobileLinks.classList.add("show");
-}
+  function handleMobileMenuOpen(e) {
+    e.preventDefault();
+    const mobileLinks = document.getElementsByClassName("headerMobileLinks")[0];
+    mobileLinks.classList.add("show");
+  }
 
-function handleMobileMenuClose(e) {
-  e.preventDefault();
-  const mobileLinks = document.getElementsByClassName("headerMobileLinks")[0];
-  mobileLinks.classList.remove("show");
+  function handleMobileMenuClose(e) {
+    e.preventDefault();
+    const mobileLinks = document.getElementsByClassName("headerMobileLinks")[0];
+    mobileLinks.classList.remove("show");
+  }
 }
 
 const homeLink = document.getElementById("home");
 const productLink = document.getElementById("product");
 
 if (window.location.href.match("/pages/landing/index.html")) {
+
   homeLink.classList.add("active");
   productLink.classList.remove("active");
 } else if (window.location.href.match("/pages/products/index.html")) {
