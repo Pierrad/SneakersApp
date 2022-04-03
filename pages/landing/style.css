@@ -1,6 +1,7 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  position: relative;
 }
 
 .container {
@@ -8,6 +9,7 @@ body {
   margin: 2rem auto;
 }
 
+/**************************** Hero *********************/
 .hero {
   display: flex;
   flex-direction: column;
@@ -28,7 +30,7 @@ body {
 }
 
 .specialTitle {
-  color: #FF000E;
+  color: #ff000e;
   opacity: 0.7;
   z-index: 10;
 }
@@ -46,13 +48,23 @@ body {
   z-index: 10;
 }
 
-
 .ctaBuy:before {
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
   position: absolute;
   top: -2px;
-  left:-2px;
+  left: -2px;
   background-size: 400%;
   z-index: -1;
   filter: blur(5px);
@@ -60,12 +72,12 @@ body {
   height: calc(100% + 4px);
   animation: glowing 20s linear infinite;
   opacity: 0;
-  transition: opacity .3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   border-radius: 2rem;
 }
 
 .ctaBuy:active {
-  color: #000
+  color: #000;
 }
 
 .ctaBuy:active:after {
@@ -78,7 +90,7 @@ body {
 
 .ctaBuy:after {
   z-index: -1;
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -89,9 +101,15 @@ body {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .backgroundTitle {
@@ -110,6 +128,8 @@ body {
   filter: drop-shadow(rgba(0, 0, 0, 0.08) 0px 0.2rem 0.6rem);
   z-index: 10;
 }
+
+/**************************** Absolute Positioning elements *********************/
 
 .redCircle {
   position: absolute;
@@ -139,7 +159,7 @@ body {
   z-index: 10;
   padding: 0.5rem;
   border-radius: 50%;
-  background: #FF0007;
+  background: #ff0007;
   opacity: 0.8;
 }
 
@@ -149,7 +169,7 @@ body {
   left: 15%;
   z-index: 10;
   padding: 0.3rem;
-  border: 3px solid #FF0007;
+  border: 3px solid #ff0007;
   opacity: 0.8;
   transform: rotate(-20deg);
 }
@@ -168,15 +188,222 @@ body {
   transform: rotate(20deg);
 }
 
+/**************************** Products samples *********************/
+
+.productsTitleBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.productDiscoverCtaBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+} 
+
+.productDiscoverCta {
+  cursor: pointer;
+  color:  black;
+  text-decoration: none;
+}
+
+.productDiscoverCtaIcon {
+  margin-left: 0.5rem;
+}
+
+.someProducts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.product {
+  max-width: 18rem;
+  transition: all 0.2s ease 0s;
+  border-radius: 2rem;
+  position: relative;
+}
+
+.product:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 2rem;
+}
+
+.product:active {
+  color: rgba(255, 186, 188, 0.2);
+}
+
+.product:active:after {
+  background: transparent;
+}
+
+.product:hover:before {
+  opacity: 1;
+}
+
+.product:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(252, 245, 245);
+  left: 0;
+  top: 0;
+  border-radius: 2rem;
+}
+
+
+.productImage {
+  width: 18rem;
+  overflow: hidden;
+  border-radius: 2rem;
+  filter: drop-shadow(rgba(0, 0, 0, 0.04) 0px 0.2rem 0.6rem);
+}
+
+.productImage img {
+  margin: -5rem 0 -2rem 0;
+}
+
+.productDetails {
+  padding: 1rem;
+
+}
+
+.productMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productCta {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: white;
+  border-radius: 2rem;
+  border: none;
+  background-color: #403A59;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+  filter: drop-shadow(rgba(0, 0, 0, 0.08) 0px 0.2rem 0.6rem);
+}
+
+.productCta:hover {
+  background-color: #483e6f;
+}
+
+
+/**************************** Discover us *********************/
+
+.coloredContainer {
+  background-color: #fff5d2;
+}
+
+.discoverUs {
+  max-width: 980px;
+  margin: 2rem auto;
+  margin-bottom: 0;
+  padding: 2rem 0 4rem 0;
+}
+
+
+.discoverCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+
+.discoverCard {
+  max-width: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.discoverCardImageWrapper {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+}
+
+.discoverCardImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -45%);
+  width: 7rem;
+  height: 7rem;
+}
+
+.discoverCardBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 50rem;
+  opacity: 0.7;
+} 
+
+#discoverCardBackground1 {
+  background-color: #ff0000;
+}
+
+#discoverCardBackground2 {
+  background-color: #ff7300;
+}
+
+#discoverCardBackground3 {
+  background-color: #fffb00;
+}
+
+.discoverCardText {
+  font-size: 0.7rem;
+}
+
+
 .scrollBarIndicator {
   position: fixed;
   top: 50%;
   left: 5%;
   width: 2px;
   height: 15rem;
-  background: #E9E7E0;
+  background: #e9e7e0;
   opacity: 0.8;
-  z-index: -1;
+  z-index: 100;
   transform: translateY(-50%);
 }
 
@@ -192,8 +419,102 @@ body {
   left: 0;
   width: 100%;
   height: 2rem;
-  background: #FF0000;
+  background: #ff0000;
   opacity: 0.8;
   z-index: -1;
   border-radius: 1rem;
+}
+
+
+@media screen and (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    position: relative;
+  }
+
+  .hero {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .backgroundTitle {
+    font-size: 10rem;
+    margin-top: 8rem;
+  }
+
+  .backgroundImage {
+    margin-top: -4rem;
+  }
+
+  .productsTitleBox {
+    flex-direction: column;
+  }
+
+  .productsTitle {
+    text-align: center;
+  }
+
+  .someProducts {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .product {
+    margin-bottom: 2rem;
+  }
+
+  .productDetails {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  .discoverUs {
+    padding: 2rem;
+  }
+
+  .discoverUs h1 {
+    text-align: center;
+  }
+
+  .discoverCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .redCircle {
+    position: absolute;
+    top: -8%;
+    right: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
+
+  .yellowCircle {
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
+
+  .blueCircle {
+    position: absolute;
+    top: 70%;
+    left: 0%;
+    z-index: 2;
+    opacity: 0.5;
+  }
 }

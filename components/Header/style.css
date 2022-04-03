@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-
 * {
   font-family: 'Poppins', sans-serif;
   --red-color: #FF5B5F;
@@ -13,14 +12,11 @@
   align-items: center;
   padding: 0 4rem 0 5rem;
   background: transparent;
+  z-index: 100;
 }
 
 .logo {
   cursor: pointer;
-}
-
-.headerLinks {
-
 }
 
 .headerLink {
@@ -42,4 +38,137 @@
 
 .headerUser > img:not(:last-child) {
   margin-right: 1rem;
+}
+
+.headerMobileContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.headerMobileUser {
+  display: flex;
+  align-items: center;
+}
+
+.headerMobileUser > img {
+  margin-right: 1rem;
+}
+
+.burgerIcon {
+  margin-left: 1rem;
+}
+
+.logoMobile {
+  cursor: pointer;
+  margin-left: 3rem;
+}
+
+.headerMobileLinks {
+  height: 100vh;
+  width: 100%;
+  z-index: 200;
+  position: absolute;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s ease-in-out;
+  backdrop-filter: blur(25px);
+  padding: 0 1rem;
+}
+
+.headerMobileLinkBox {
+  display: flex;
+  margin-top: 5rem;
+}
+
+.returnIcon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.headerMobileLink {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+  padding: 3rem 1rem;
+  position: relative;
+}
+
+
+.headerMobileLink:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 2rem;
+}
+
+
+.headerMobileLink:active:after {
+  background: transparent;
+}
+
+.active.headerMobileLink:before {
+  opacity: 1;
+}
+
+.headerMobileLink:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 2rem;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+
+.mobileLogoLink {
+  width: 2rem;
+  height: 2rem;
+}
+
+.mobileLogoLink2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.show {
+  transform: translate(0, 0);
+}
+
+
+@media screen and (max-width: 640px) {
+  .active {
+    border-radius: 1rem;
+    background: white;
+  }
 }
