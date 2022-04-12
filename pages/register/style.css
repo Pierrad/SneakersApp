@@ -6,97 +6,192 @@
   body {
     width: 100%;
     height: 100vh;
-    background-color: gainsboro;
-    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
   } 
   
   .container {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-  
+    flex-direction: row;
   }
-  
-  .card {
-    position: relative;
-    background-color: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 20rem;
-  }
-  
-  .card:before {
-    content:""; 
-    display:block; 
-    position:absolute; 
-    left:0; 
-    bottom: -3px; 
-    width: 100%; 
-    height: 1px;                     
-    background:#FFF;
-  }
-  
-  .card:after {
-    content:""; 
-    display:block; 
-    position:absolute; 
-    left:0; 
-    bottom: -6px; 
-    width: 100%; 
-    height: 1px;                     
-    background:#FFF;
-  }
-  
-  #avatar {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-  }
-  
-  .title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #797a76;  
-    margin: 1rem 0 1rem 0;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-  }
-  
-  .inputWithIcon {
-    position: relative;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-  
-  input {
-    width: 100%;
-    height: 1rem;
-    border-radius: 0.3rem;
-    border: none;
-    padding: 1rem;
-    font-size: 0.8rem;
+
+  .wrapperLeft {
+    width: 60%;
+    height: 100%;
     background-color: #f2f2f2;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  }
+
+  .wrapperRight {
+    width: 40%;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+  }
+
+  .box {
+    padding: 2rem 5rem;
+  }
+
+  .top {
+    margin: 0 0 1rem 0;
+  }
+
+  .brandName {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ff000e;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ECEDEF;
+  }
+
+  .titles {
+    margin: 1.5rem 0;
+  }
+
+  .signInCTA {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   
+  .signInCTA p {
+    width: max-content;
+    font-size: 1rem;
+    color: #9B9BA5;
+  }
+
+  .signInCTA a {
+    font-weight: bold;
+    color: #ff000e;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  #form {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+  }
+
+  #form input {
+    margin: 0 0 1.5rem 0;
+  }
+
+  input {
+    padding: 0.6rem 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #E6EAFB;
+    font-size: 0.8rem;
+  }
+
+  #submit {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    border: none;
+    background-color: #ff000e;
+    opacity: 0.8;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  #submit:hover {
+    background-color: #fc3e48;
+  }
+
+  .sso {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .or {
+    font-size: 1rem;
+    color: #9B9BA5;
+  }
+
+  .or::before {
+    content: "-";
+    color: #9B9BA5;
+  } 
+
+  .or::after {
+    content: "-";
+    color: #9B9BA5;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  .googleSSO {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #FADCDD;
+    cursor: pointer;
+  }
+
+  .googleSSO img {
+    margin-right: 0.5rem;
+  }
+
+  .brandSSO {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #FADCDD;
+    cursor: pointer;
+  }
+
+  .redCircle {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    transform: rotate(270deg);
+    z-index: -1;
+  }
+  
+  .yellowCircle {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    z-index: -1;
+  }
+  
+  .blueCircle {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: rotate(180deg);
+    z-index: -1;
+  }
+
+  
+  /**************************** STATE *********************/
+
   .true {
     border: 1px solid #00FF00;
   }
@@ -105,53 +200,17 @@
     border: 1px solid #ff3333;
   }
   
-  .icon {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #f2f2f2;
+  .show {
+    visibility: visible;
   }
-  
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 2rem;
-    border-radius: 0.3rem;
-    border: none;
-    background-color: #3a7fc3;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    transition: color 0.3s ease-in-out;
+
+  .hidden {
+    display: none;
   }
-  
-  button:hover {
-    background-color: #2a5fb9;
-  }
-  
-  button:disabled,
-  button[disabled] {
-    background: #bbbbbb;
-    border: 1px solid #bbbbbb;
-    color: #666666;
-    cursor: not-allowed;
-  }
-  
-  
-  p {
-    color: #797a76;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
+
+  /**************************** MESSAGE BOX *********************/
+
+
   .messageBox {
     visibility: hidden;
     position: absolute;
@@ -181,19 +240,13 @@
     background-color: #ff3333;
   }
   
-  .show {
-    visibility: visible;
-  }
-  
   #buttonText {
     color: white;
   }
+
+    /**************************** SPINNER *********************/
   
-  .hidden {
-    display: none;
-  }
-  
-  svg {
+  #spinner {
     animation: 2s linear infinite svg-animation;
     width: 1.3rem;
     height: auto;
@@ -208,7 +261,7 @@
     }
   }
   
-  circle {
+  #circle {
     animation: 1.4s ease-in-out infinite both circle-animation;
     display: block;
     fill: transparent;
@@ -239,9 +292,36 @@
     }
   }
   
+    /**************************** MEDIA QUERIES *********************/
   
   @media screen and (max-width: 640px) {
-    .card {
-      width: 20rem;
+    .container {
+      flex-direction: column;
+      max-width: 100%;
+    }
+
+    .wrapperLeft {
+      width: 100%;
+    }
+
+    .wrapperRight {
+      width: 100%;
+    }
+
+    .box {
+      padding: 2rem 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .buttons button {
+      margin-bottom: 1rem;
     }
   }

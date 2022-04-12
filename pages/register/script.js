@@ -67,7 +67,7 @@ const validateEmail = (email) => {
     const headers = new Headers();
     headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
   
-    const form = document.getElementById("registerForm");
+    const form = document.getElementById("form");
     const formData = new FormData(form);
   
     const config = {
@@ -92,7 +92,7 @@ const validateEmail = (email) => {
           localStorage.setItem("username", username);
           localStorage.setItem("token", String(token));
           document.cookie = `authToken=${res.data.user.token.token};max-age=${expiration};path=/`;
-          window.location.href = "./pages/products/products.html";
+          window.location.href = "/pages/products/index.html";
         } else {
           showError();
         }
