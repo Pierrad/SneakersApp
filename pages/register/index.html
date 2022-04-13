@@ -5,35 +5,84 @@
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width" />
   <title>Register page</title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="../../style/reset.css" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="container">
-    <div class="card">
-      <img src="../../assets/images/avatar.jpeg" id="avatar">
-      <h1 class="title">User Register</h1>
-      <form class="form" id="registerForm">
-        <div class="inputWithIcon">
-          <input id="email" type="email" name="email" placeholder="User ID" />
-          <img src="../../assets/images/user.webp" class="icon" />
+    <div class="wrapperLeft"></div>
+    <div class="wrapperRight">
+      <div class="box">
+        <div class="top">
+          <span class="brandName">Sneakers</span>
         </div>
-        <div class="inputWithIcon">
-          <input id="password" type="password" name="password" placeholder="Password" />
-          <img src="../../assets/images/key.png" class="icon" />
+        <div class="divider"></div>
+        <div class="titles">
+          <h1 class="title">S'inscrire chez Sneakers</h1>
+          <div class="signInCTA">
+            <p>Vous avez déjà un compte ?</p>
+            <a href="/pages/login/index.html">Connexion</a>
+          </div>
         </div>
-        <div class="inputWithIcon">
-          <input id="username" type="text" name="username" placeholder="Username" />
+        <div class="divider"></div>
+        <form id="form">
+          <input id="username" name="username" type="text" placeholder="Pseudo" />
+          <input id="email" name="email" type="email" placeholder="Email" />
+          <input id="password" name="password" type="password" placeholder="Mot de passe" />
+          <button id="submit" onclick="register(event)">
+            <p id="buttonText">S'inscrire</p>
+            <svg id="spinner" class="hidden" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle id="circle" cx="50" cy="50" r="45" />
+            </svg>
+          </button>
+        </form>
+        <div class="divider"></div>
+        <div class="sso">
+          <div class="or">
+            OR
+          </div>
+          <div class="buttons">
+            <button class="googleSSO">
+              <img src="../../assets/images/google.svg" alt="Google logo" />
+              S'inscrire avec Google
+            </button>
+            <button class="brandSSO">
+              <img src="../../assets/images/facebook2.svg" alt="Facebook logo" />
+            </button>
+            <button class="brandSSO">
+              <img src="../../assets/images/apple.svg" alt="Apple logo" />
+            </button>
+          </div>
         </div>
-        <button id="submit" onclick="register(event)">
-          <p id="buttonText">REGISTER</p>
-          <svg id="spinner" class="hidden" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" />
-          </svg>
-        </button>
-      </form>
-      <p>Login <a href="/pages/login/index.html">Here</a></p>
+        <svg class="redCircle" width="100px" height="100px">
+          <defs>
+            <filter x="-80%" y="-80%" width="200%" height="200%" id="blur">
+              <feGaussianBlur stdDeviation="10" />
+            </filter>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="#FFD2E6" opacity="0.4" filter="url(#blur)"></circle>
+        </svg>
+  
+        <svg class="yellowCircle" width="300px" height="300px">
+          <defs>
+            <filter x="-80%" y="-08%" width="200%" height="200%" id="blur">
+              <feGaussianBlur stdDeviation="40" />
+            </filter>
+          </defs>
+          <circle cx="200" cy="200" r="200" fill="#FEF3C2" opacity="0.2" filter="url(#blur)"></circle>
+        </svg>
+  
+        <svg class="blueCircle" width="150px" height="150px">
+          <defs>
+            <filter x="-80%" y="-80%" width="200%" height="200%" id="blur">
+              <feGaussianBlur stdDeviation="20" />
+            </filter>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="#B7FFFB" opacity="0.2" filter="url(#blur)"></circle>
+        </svg>
+      </div>
     </div>
     <div class="messageBox" id="success">
       <p>Register Successful!</p>
