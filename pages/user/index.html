@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width" />
+  <title>User page</title>
+  <!--On ne charge pas le reste de la page si on est pas connecté.-->
+  <script src="../../js/userService.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="../../components/Header/style.css" />
+  <link rel="stylesheet" href="../../style/reset.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="Header"> </div>
+  <div class="container">
+    <div class="card">
+      <img src="../../assets/images/user.svg" class="avatar" alt="Avatar icon">
+      <h2 id="name" class="name"></h2>
+      <p id="email" class="email"></p>
+      <div class="info">
+        <div class="infoItem">
+          <div class="infoItemLeft">
+            <img class="infoItemIcon" src="../../assets/images/suitcase.svg" alt="Company icon" />
+            <p class="infoItemTitle">Company</p>
+          </div>
+          <p id="company" class="infoItemText">UNS</p>
+        </div>
+        <div class="infoItem">
+          <div class="infoItemLeft">
+            <img class="infoItemIcon" src="../../assets/images/check.svg" alt="PublicId icon" />
+            <p class="infoItemTitle">PublicId</p>
+          </div>
+          <p id="publicID" class="infoItemText"></p>
+        </div>
+        <div class="infoItem">
+          <div class="infoItemLeft">
+            <img class="infoItemIcon" src="../../assets/images/cloud.svg" alt="Role icon" />
+            <p class="infoItemTitle">Role</p>
+          </div>
+          <p id="role" class="infoItemText"></p>
+        </div>
+      </div>
+      <button id="back" onclick="history.back()">Retour</button>
+    </div>
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../components/Header/script.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

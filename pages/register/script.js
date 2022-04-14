@@ -64,35 +64,20 @@ const validateEmail = (email) => {
   
     showPending();
   
-    const headers = new Headers();
-    headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-  
-    const form = document.getElementById("registerForm");
+    const form = document.getElementById("form");
     const formData = new FormData(form);
   
-    const config = {
-      method: "POST",
-      headers,
-      mode: "cors",
-      cache: "default",
-      body: formData,
-    };
   
-    fetch("https://m413.joss-coupet.eu/users/register", config)
-      .then(function (response) {
-        return response.json();
-      })
+    callAPI("POST", "users/register", formData)
       .then((res) => {
         hidePending();      
         if (res.success) {
           showSuccess();
-          const username = res.data.user.username;
           const token = res.data.user.token.token;
           const expiration = res.data.user.token.expiration;
-          localStorage.setItem("username", username);
-          localStorage.setItem("token", String(token));
-          document.cookie = `authToken=${res.data.user.token.token};max-age=${expiration};path=/`;
-          window.location.href = "./pages/products/products.html";
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          document.cookie = `authToken=${token};max-age=${expiration};path=/`;
+          window.location.href = "/pages/products/index.html";
         } else {
           showError();
         }

@@ -12,16 +12,16 @@
 <body>
   <div class="container">
     <div class="card">
-      <img src="../../assets/avatar.jpeg" id="avatar">
+      <img src="../../assets/images/avatar.jpeg" id="avatar">
       <h1 class="title">User Log in</h1>
       <form class="form" id="loginForm">
         <div class="inputWithIcon">
           <input id="email" type="text" name="email" placeholder="User ID" />
-          <img src="../../assets/user.webp" class="icon" />
+          <img src="../../assets/images/user.webp" class="icon" />
         </div>
         <div class="inputWithIcon">
           <input id="password" type="password" name="password" placeholder="Password" />
-          <img src="../../assets/key.png" class="icon" />
+          <img src="../../assets/images/key.png" class="icon" />
         </div>
         <button id="submit" onclick="login(event)">
           <p id="buttonText">LOGIN</p>
@@ -37,10 +37,10 @@
       <p>Login Successful!</p>
     </div>
     <div class="messageBox" id="error">
-      <p>Login Failed!</p>
+      <p id="messageBoxError"></p>
     </div>
   </div>
-
+  <script src="../../js/api.js"></script>
   <script src="script.js"></script>
 </body>
 

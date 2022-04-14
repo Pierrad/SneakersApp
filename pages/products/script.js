@@ -1,10 +1,7 @@
-if (localStorage.getItem("token") === null || document.cookie.indexOf("authToken") === -1) {
-  window.location.href = "/pages/login/login.html";
-}
+let NUMBER_OF_PRODUCTS = 6
 
-if (localStorage.getItem("username") !== null) {
-  document.getElementById("title").innerHTML = `Bienvenue ${localStorage.getItem("username")}`;
-}
+// ! Attention, user est définie depuis le fichier js/userService.js
+document.getElementById("title").innerHTML = `Bienvenue ${user.username}`;
 
 function generateProductHTML(product) {
   return `
@@ -37,21 +34,7 @@ function showNumberOfProducts(number) {
 }
 
 function getProducts() {
-  const headers = new Headers();
-  headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-  headers.append("Authorization", localStorage.getItem("token"));
-
-  const config = {
-    method: "GET",
-    headers,
-    mode: "cors",
-    cache: "default",
-  };
-
-  fetch("https://m413.joss-coupet.eu/products", config)
-    .then((response) => {
-      return response.json();
-    })
+  callAPI("GET", 'products', {})
     .then((res) => {
       const products = res.data.products;
       showNumberOfProducts(products.length);
@@ -67,26 +50,17 @@ function getProducts() {
         };
       });
 
-      newProducts.forEach(addProductToPage);
-    });
+      newProducts.forEach((newP, item) => {
+        if(item< NUMBER_OF_PRODUCTS){
+          addProductToPage(newP)
+        }
+      });
+      localStorage.setItem('products', JSON.stringify(newProducts))
+    })
 }
 
 function getOneProduct(productId) {
-  const headers = new Headers();
-  headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-  headers.append("Authorization", localStorage.getItem("token"));
-
-  const config = {
-    method: "GET",
-    headers,
-    mode: "cors",
-    cache: "default",
-  };
-
-  const product = fetch(`https://m413.joss-coupet.eu/products/${productId}`, config)
-    .then((response) => {
-      return response.json();
-    })
+  const product = callAPI("GET", `products/${productId}`, {})
     .then((res) => {
       const product = res.data.product;
       const content = JSON.parse(product.content);
@@ -104,33 +78,16 @@ function getOneProduct(productId) {
 }
 
 function modifyProduct(prod) {
-  const headers = new Headers();
-  headers.append("Content-type", "application/json");
-  headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-  headers.append("Authorization", localStorage.getItem("token"));
-
-  const body = JSON.stringify({
+  callAPI("POST", `products/${prod.productId}`, {
     content: {
       name: prod.name,
       brand: prod.brand,
       price: prod.price
     }
-  });
-
-  const conf = {
-    method: "POST",
-    headers,
-    mode: "cors",
-    body: body,
-  };
-
-  fetch(`https://m413.joss-coupet.eu/products/${prod.productId}`, conf)
-    .then((response) => {
-      return response.json();
-    })
+  })
     .then((res) => {
       if (res.success === true) {
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.warn("Error while updating product");
       }
@@ -184,3 +141,24 @@ window.onclick = function (event) {
 };
 
 getProducts();
+
+const loadmore = document.querySelector('.loadMore');
+
+loadmore.addEventListener('click', (e) => {
+  const productsList = JSON.parse(localStorage.getItem('products'))
+  if(productsList !== undefined){
+    for(let i = NUMBER_OF_PRODUCTS; i<NUMBER_OF_PRODUCTS+4; i++){
+      addProductToPage(productsList[i])
+    }
+    NUMBER_OF_PRODUCTS += 4
+    if(NUMBER_OF_PRODUCTS + 4 >= productsList.length) {
+      for(let j = NUMBER_OF_PRODUCTS; j < productsList.length; j++){
+        addProductToPage(productsList[j])
+        
+      }
+      NUMBER_OF_PRODUCTS = NUMBER_OF_PRODUCTS+(productsList.length-NUMBER_OF_PRODUCTS)
+      e.target.style.display = 'none';
+    }
+}
+
+})
