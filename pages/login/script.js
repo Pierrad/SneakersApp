@@ -4,6 +4,14 @@ const validateEmail = (email) => {
   );
 };
 
+// On vérifie si on a une erreur en paramètre de la page.
+const urlString = window.location.href
+const url = new URL(urlString);
+const hasError = url.searchParams.get("showError");
+
+// Events
+let inputEvent = new CustomEvent("isSubmitable");
+
 const mailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const successBox = document.getElementById("success");
@@ -12,13 +20,33 @@ const spinner = document.getElementById("spinner");
 const submit = document.getElementById("submit");
 const submitLabel = document.getElementById("buttonText");
 
+// Par défaut
+submit.disabled = true;
+if (hasError === '1') {
+  showError("Error");
+}
+
+
 mailInput.addEventListener("input", function () {
+  document.dispatchEvent(inputEvent);
   if (validateEmail(this.value)) {
     this.classList.add("true");
     this.classList.remove("false");
   } else {
     this.classList.add("false");
     this.classList.remove("true");
+  }
+});
+
+passwordInput.addEventListener('input', function() {
+  document.dispatchEvent(inputEvent);
+})
+
+document.addEventListener('isSubmitable', function () {
+  if (validateEmail(mailInput.value) && passwordInput.value !== '') {
+    submit.disabled = false;
+  } else {
+    submit.disabled = true;
   }
 });
 
@@ -34,7 +62,9 @@ function showSuccess() {
   }, 5000);
 }
 
-function showError() {
+function showError(error) {
+  const message = document.getElementById("messageBoxError");
+  message.innerHTML = error;
   mailInput.classList.add("false");
   passwordInput.classList.add("false");
 
@@ -61,40 +91,24 @@ function login(event) {
 
   showPending();
 
-  const headers = new Headers();
-  headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-
   const form = document.getElementById("loginForm");
   const formData = new FormData(form);
 
-  const config = {
-    method: "POST",
-    headers,
-    mode: "cors",
-    cache: "default",
-    body: formData,
-  };
-
-  fetch("https://m413.joss-coupet.eu/users/login", config)
-    .then(function (response) {
-      return response.json();
-    })
+  callAPI("POST", "users/login", formData)
     .then((res) => {
       hidePending();      
       if (res.success) {
         showSuccess();
-        const username = res.data.user.username;
         const token = res.data.user.token.token;
         const expiration = res.data.user.token.expiration;
-        localStorage.setItem("username", username);
-        localStorage.setItem("token", String(token));
-        document.cookie = `authToken=${res.data.user.token.token};max-age=${expiration};path=/`;
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        document.cookie = `authToken=${token};max-age=${expiration};path=/`;
         window.location.href = "/pages/products/index.html";
       } else {
-        showError();
+        showError("Login Failed!");
       }
     })
     .catch(function (error) {
-      showError();
+      showError("Error");
     });
 }

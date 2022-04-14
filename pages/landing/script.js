@@ -34,21 +34,7 @@ function addProductToPage(product) {
 
 
 function getProducts() {
-  const headers = new Headers();
-  headers.append("owner", "F3QwUaEQKnTDVEHWr2sugb5AAfkoj0eh1qV9kua2");
-  headers.append("Authorization", localStorage.getItem("token"));
-
-  const config = {
-    method: "GET",
-    headers,
-    mode: "cors",
-    cache: "default",
-  };
-
-  productsList = fetch("https://m413.joss-coupet.eu/products", config)
-    .then((response) => {
-      return response.json();
-    })
+  productsList = callAPI("GET", "products", {})
     .then((res) => {
       const products = res.data.products;
       const newProducts = products.map((product) => {

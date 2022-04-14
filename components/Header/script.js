@@ -31,7 +31,7 @@ function generateDesktopHeader() {
       </div>
       <div class="headerUser">
         <img src="../../assets/images/shopping_cart.svg" alt="shopping cart" class="logo">
-        <img src="../../assets/images/user.svg" alt="avatar" class="logo" onclick="redirectToLogin()">
+        <img src="../../assets/images/user.svg" alt="avatar" class="logo" onclick="redirectToUserPage()">
       </div>
     </div>
   `;
@@ -69,6 +69,10 @@ function redirectToLogin() {
 
 function redirectToLanding() {
   window.location.href = "/pages/landing/index.html";
+}
+
+function redirectToUserPage() {
+  window.location.href = "/pages/user/index.html";
 }
 
 if (isMobile) {
