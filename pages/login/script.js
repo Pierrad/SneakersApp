@@ -50,29 +50,39 @@ document.addEventListener('isSubmitable', function () {
   }
 });
 
-function showSuccess() {
+function resetToasterStyle() {
+  const toaster = document.getElementById('toaster');
+  toaster.classList.remove("bg-success");
+  toaster.classList.remove("bg-danger");
+}
+
+function showSuccess(success) {
   submit.disabled = true;
   mailInput.classList.remove("false");
   passwordInput.classList.remove("false");
 
-  successBox.classList.add("show");
-  errorBox.classList.remove("show");
-  setTimeout(() => {
-    successBox.classList.remove("show");
-  }, 5000);
+  const message = document.getElementById("toast-text");
+  message.innerHTML = success;
+
+  resetToasterStyle();
+  const toaster = document.getElementById('toaster');
+  toaster.classList.add("bg-success");
+  const toast = new bootstrap.Toast(toaster);
+  toast.show();
 }
 
 function showError(error) {
-  const message = document.getElementById("messageBoxError");
-  message.innerHTML = error;
   mailInput.classList.add("false");
   passwordInput.classList.add("false");
 
-  errorBox.classList.add("show");
-  successBox.classList.remove("show");
-  setTimeout(() => {
-    errorBox.classList.remove("show");
-  }, 5000);
+  const message = document.getElementById("toast-text");
+  message.innerHTML = error;
+
+  resetToasterStyle();
+  const toaster = document.getElementById('toaster')
+  toaster.classList.add("bg-danger");
+  const toast = new bootstrap.Toast(toaster);
+  toast.show();
 }
 
 function showPending() {
@@ -98,7 +108,7 @@ function login(event) {
     .then((res) => {
       hidePending();      
       if (res.success) {
-        showSuccess();
+        showSuccess("Login success!");
         const token = res.data.user.token.token;
         const expiration = res.data.user.token.expiration;
         localStorage.setItem("user", JSON.stringify(res.data.user));
