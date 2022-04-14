@@ -17,15 +17,15 @@
         <img class="rounded-circle" width="75px" height="75px" src="../../assets/images/avatar.jpeg" id="avatar">
         <h1 class="title mt-3 mb-3">User Log in</h1>
         <form class="form d-flex flex-column align-items-center justify-content-center" id="loginForm">
-          <div class="inputWithIcon mb-3">
+          <div class="inputWithIcon w-100 mb-3">
             <input id="email" type="text" name="email" placeholder="User ID" class="border-0 p-3 rounded" />
             <img src="../../assets/images/user.webp" class="icon" width="20px" height="20px" />
           </div>
-          <div class="inputWithIcon mb-3">
+          <div class="inputWithIcon w-100 mb-3">
             <input id="password" type="password" name="password" placeholder="Password" class="border-0 p-3 rounded" />
             <img src="../../assets/images/key.png" class="icon" width="20px" height="20px" />
           </div>
-          <button id="submit" onclick="login(event)" class="d-flex align-items-center justify-content-center mb-3 border-0 rounded .pe-auto">
+          <button id="submit" onclick="login(event)" role="button" class="d-flex align-items-center justify-content-center mb-3 border-0 rounded">
             <p id="buttonText" class="mb-0 text-white">LOGIN</p>
             <svg id="spinner" class="hidden" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="45"/>
