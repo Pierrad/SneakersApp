@@ -4,54 +4,14 @@
 }
 
 body {
-  width: 100%;
-  height: 100vh;
   background-color: gainsboro;
   font-family: 'Roboto', sans-serif;
-} 
-
-.container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-
 }
 
-.card {
+#card {
   position: relative;
   background-color: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
   width: 20rem;
-}
-
-.card:before {
-  content:""; 
-  display:block; 
-  position:absolute; 
-  left:0; 
-  bottom: -3px; 
-  width: 100%; 
-  height: 1px;                     
-  background:#FFF;
-}
-
-.card:after {
-  content:""; 
-  display:block; 
-  position:absolute; 
-  left:0; 
-  bottom: -6px; 
-  width: 100%; 
-  height: 1px;                     
-  background:#FFF;
 }
 
 #avatar {
@@ -59,42 +19,28 @@ body {
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
 }
 
 .title {
   font-size: 1.3rem;
   font-weight: 500;
   color: #797a76;  
-  margin: 1rem 0 1rem 0;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 80%;
 }
 
 .inputWithIcon {
   position: relative;
-  margin-bottom: 1rem;
   width: 100%;
 }
 
 input {
   width: 100%;
   height: 1rem;
-  border-radius: 0.3rem;
-  border: none;
-  padding: 1rem;
   font-size: 0.8rem;
   background-color: #f2f2f2;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 .true {
@@ -110,24 +56,15 @@ input {
   right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.5rem;
-  height: 1.5rem;
   background-color: #f2f2f2;
 }
 
 button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 2rem;
-  border-radius: 0.3rem;
-  border: none;
   background-color: #3a7fc3;
   color: white;
   font-size: 1rem;
-  cursor: pointer;
-  margin-bottom: 1rem;
   transition: color 0.3s ease-in-out;
 }
 
@@ -143,34 +80,8 @@ button[disabled] {
   cursor: not-allowed;
 }
 
-
 p {
   color: #797a76;
-}
-
-a {
-  text-decoration: none;
-}
-
-.messageBox {
-  visibility: hidden;
-  position: absolute;
-  top: 3%;
-  right: 3%;
-  width: 10rem;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.messageBox > p {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
 }
 
 #success {
@@ -183,10 +94,6 @@ a {
 
 .show {
   visibility: visible;
-}
-
-#buttonText {
-  color: white;
 }
 
 .hidden {
@@ -236,12 +143,5 @@ circle {
   100% {
     stroke-dashoffset: 280;
     transform: rotate(360deg);
-  }
-}
-
-
-@media screen and (max-width: 640px) {
-  .card {
-    width: 20rem;
   }
 }
