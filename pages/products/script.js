@@ -5,18 +5,18 @@ document.getElementById("title").innerHTML = `Bienvenue ${user.username}`;
 
 function generateProductHTML(product) {
   return `
-    <div class="product">
-      <div class="productImage" data-product="${product.id}" onclick="openModal(this)">
-        <img src="${product.image}" alt="${product.content}">
+    <div class="product w-100 d-flex flex-column flex-md-row mb-4 pb-2">
+      <div class="productImage me-3" role="button" data-product="${product.id}" onclick="openModal(this)">
+        <img class="rounded h-auto" width="150px" src="${product.image}" alt="${product.content}">
       </div>
-      <div class="productDetails">
-        <h2>${product.name}</h2>
-        <div class="productMeta">
-          <p class="productId">${String(product.id)}</p>
-          <p class="productOwner">${product.owner}</p>
-          <p class="productPrice">${product.price}</p>
+      <div class="productDetails w-100 d-flex flex-column justify-content-between mt-3 pb-3">
+        <h2 class="mb-3">${product.name}</h2>
+        <div class="productMeta d-flex flex-column flex-md-row align-content-start align-items-md-center justify-content-between mb-2">
+          <p class="productId mb-2 mb-md-0">${String(product.id)}</p>
+          <p class="productOwner mb-2 mb-md-0">${product.owner}</p>
+          <p class="productPrice mb-2 mb-md-0 p-2 rounded">${product.price}</p>
         </div>
-        <p class="productBrand">${product.brand}</p>
+        <p class="productBrand mb-0 rounded pt-1 pb-1 ps-2 pe-2 mb-2">${product.brand}</p>
       </div>
     </div>
   `;
@@ -87,7 +87,7 @@ function modifyProduct(prod) {
   })
     .then((res) => {
       if (res.success === true) {
-        // window.location.reload();
+        window.location.reload();
       } else {
         console.warn("Error while updating product");
       }
@@ -95,10 +95,11 @@ function modifyProduct(prod) {
 }
 
 const modal = document.getElementById("myModal");
-const span = document.getElementsByClassName("close")[0];
+const close = document.getElementById("modalClose");
 
 async function openModal(e) {
-  modal.style.display = "block";
+  modal.classList.add("show");
+
   const productId = e.dataset.product;
   const product = await getOneProduct(productId);
 
@@ -130,13 +131,13 @@ async function openModal(e) {
   });
 }
 
-span.onclick = function () {
-  modal.style.display = "none";
+close.onclick = function () {
+  modal.classList.remove("show");
 };
 
 window.onclick = function (event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.classList.remove("show");
   }
 };
 

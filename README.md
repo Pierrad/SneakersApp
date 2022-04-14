@@ -20,6 +20,14 @@ Pour se connecter, il est possible d'utiliser les identifiants suivants :
 - pierreadrien.vasseur@gmail.com / Azerty@123456
 - wassimbouzakri@icloud.com / Password123@
 
+## Bootstrap
+
+Les pages et éléments suivants utilisent maintenant en majorité Bootstrap pour le style et la responsivité : 
+- Login
+- Products
+- User
+
+Les autres pages ne l'utilisent pas pour l'instant car elles ne font pas partie du cadre original du projet.
 ## Avancé
 
 Pour l'instant, on peut : 
