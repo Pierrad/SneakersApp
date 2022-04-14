@@ -113,7 +113,7 @@ function login(event) {
         const expiration = res.data.user.token.expiration;
         localStorage.setItem("user", JSON.stringify(res.data.user));
         document.cookie = `authToken=${token};max-age=${expiration};path=/`;
-        // window.location.href = "/pages/products/index.html";
+        window.location.href = "/pages/products/index.html";
       } else {
         showError("Login Failed!");
       }
