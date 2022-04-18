@@ -107,6 +107,7 @@ async function openModal(e) {
   const brandInput = document.getElementById("modalBrandInput");
   const priceInput = document.getElementById("modalPriceInput");
   const submit = document.getElementById("modalSubmit");
+  const externalLink = document.getElementById("modalExternalLink");
   nameInput.value = product.name;
   brandInput.value = product.brand;
   priceInput.value = product.price;
@@ -128,6 +129,11 @@ async function openModal(e) {
       brand: brandInput.value,
       price: priceInput.value,
     });
+  });
+  externalLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(productId);
+    window.location.href = `/pages/product/index.html?productid=${productId}`;
   });
 }
 
