@@ -12,3 +12,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 if (user === null) {
   window.location.href = "/pages/login/index.html";
 }
+
+if (window.location.href.includes('/index.html') && !window.location.href.includes('/pages')) {
+  window.location.href = "/pages/landing/index.html";
+}

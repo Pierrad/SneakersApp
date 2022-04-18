@@ -68,6 +68,10 @@ body {
   background: linear-gradient(90deg, rgba(209,55,105,1) 0%, rgba(227,88,103,1) 49%, rgba(234,105,103,1) 100%);
 }
 
+.externalLink {
+  cursor: pointer;
+}
+
 .loadMore {
   font-size: 18px;
   color: #fff;
