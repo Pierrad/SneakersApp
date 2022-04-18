@@ -5,7 +5,7 @@ showHeader();
 
 window.addEventListener(
   "resize",
-  function (event) {
+  function () {
     showHeader();
   },
   true
@@ -101,10 +101,9 @@ const homeLink = document.getElementById("home");
 const productLink = document.getElementById("product");
 
 if (window.location.href.match("/pages/landing/index.html")) {
-
   homeLink.classList.add("active");
   productLink.classList.remove("active");
-} else if (window.location.href.match("/pages/products/index.html")) {
+} else if (window.location.href.match("/pages/products/index.html" || "/pages/product/index.html")) {
   homeLink.classList.remove("active");
   productLink.classList.add("active");
 } else {
