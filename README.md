@@ -2,11 +2,11 @@
 
 ## Production
 
-Une version en ligne est disponible à l'adresse suivante : https://sneakers-app-prod.vercel.app/
+Une version en ligne est disponible à l'adresse suivante : https://sneakers-app-prod.vercel.app/index.html
 
 ## Pre-production
 
-Une version en ligne avec les dernières fonctionnalités en cours de développement est disponible ici : https://sneakers-app-preprod.vercel.app/
+Une version en ligne avec les dernières fonctionnalités en cours de développement est disponible ici : https://sneakers-app-preprod.vercel.app/index.html
 
 ## Installation
 
