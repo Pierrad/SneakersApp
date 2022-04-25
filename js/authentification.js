@@ -14,8 +14,6 @@ let inputEvent = new CustomEvent("isSubmitable");
 
 const mailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const successBox = document.getElementById("success");
-const errorBox = document.getElementById("error");
 const spinner = document.getElementById("spinner");
 const submit = document.getElementById("submit");
 const submitLabel = document.getElementById("buttonText");
@@ -96,26 +94,28 @@ function hidePending() {
 }
 
 
-function login(event) {
+function authentificate(event) {
   event.preventDefault();
 
   showPending();
 
-  const form = document.getElementById("loginForm");
+  const form = document.getElementById("form");
   const formData = new FormData(form);
 
-  callAPI("POST", "users/login", formData)
+  const onLogin = window.location.href.includes("login")
+
+  callAPI("POST", onLogin ? "users/login" : "users/register", formData)
     .then((res) => {
       hidePending();      
       if (res.success) {
-        showSuccess("Login success!");
+        showSuccess(onLogin ? "Login success!" : "Register success!");
         const token = res.data.user.token.token;
         const expiration = res.data.user.token.expiration;
         localStorage.setItem("user", JSON.stringify(res.data.user));
         document.cookie = `authToken=${token};max-age=${expiration};path=/`;
         window.location.href = "/pages/products/index.html";
       } else {
-        showError("Login Failed!");
+        showError(onLogin ? "Login Failed!" : "Register Failed!");
       }
     })
     .catch(function (error) {
