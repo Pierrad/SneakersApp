@@ -1,327 +1,330 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapperLeft {
+  width: 60%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+.wrapperRight {
+  width: 40%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+}
+
+.box {
+  padding: 2rem 5rem;
+}
+
+.top {
+  margin: 0 0 1rem 0;
+}
+
+.brandName {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff000e;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ecedef;
+}
+
+.titles {
+  margin: 1.5rem 0;
+}
+
+.signInCTA {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.signInCTA p {
+  width: max-content;
+  font-size: 1rem;
+  color: #9b9ba5;
+  margin: 0;
+}
+
+.signInCTA a {
+  font-weight: bold;
+  color: #ff000e;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+}
+
+#form input {
+  margin: 0 0 1.5rem 0;
+}
+
+input {
+  padding: 0.6rem 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #e6eafb;
+  font-size: 0.8rem;
+}
+
+#submit {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  border: none;
+  background-color: #ff000e;
+  opacity: 0.8;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#submit:hover {
+  background-color: #fc3e48;
+}
+
+.sso {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.or {
+  font-size: 1rem;
+  color: #9b9ba5;
+}
+
+.or::before {
+  content: "-";
+  color: #9b9ba5;
+}
+
+.or::after {
+  content: "-";
+  color: #9b9ba5;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+  margin: 1.5rem 0;
+}
+
+.googleSSO {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #fadcdd;
+  cursor: pointer;
+}
+
+.googleSSO img {
+  margin-right: 0.5rem;
+}
+
+.brandSSO {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #fadcdd;
+  cursor: pointer;
+}
+
+.redCircle {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  transform: rotate(270deg);
+  z-index: -1;
+}
+
+.yellowCircle {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  z-index: -1;
+}
+
+.blueCircle {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+
+/**************************** STATE *********************/
+
+.true {
+  border: 1px solid #00ff00;
+}
+
+.false {
+  border: 1px solid #ff3333;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hidden {
+  display: none;
+}
+
+/**************************** MESSAGE BOX *********************/
+
+.messageBox {
+  visibility: hidden;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  width: 10rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.messageBox > p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+#success {
+  background-color: #00ff00;
+}
+
+#error {
+  background-color: #ff3333;
+}
+
+#buttonText {
+  color: white;
+}
+
+/**************************** SPINNER *********************/
+
+#spinner {
+  animation: 2s linear infinite svg-animation;
+  width: 1.3rem;
+  height: auto;
+}
+
+@keyframes svg-animation {
+  0% {
+    transform: rotateZ(0deg);
   }
-  
-  body {
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    font-family: "Poppins", sans-serif;
-  } 
-  
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+#circle {
+  animation: 1.4s ease-in-out infinite both circle-animation;
+  display: block;
+  fill: transparent;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 280;
+  stroke-width: 10px;
+  transform-origin: 50% 50%;
+}
+
+@keyframes circle-animation {
+  0%,
+  25% {
+    stroke-dashoffset: 280;
+    transform: rotate(0);
+  }
+
+  50%,
+  75% {
+    stroke-dashoffset: 75;
+    transform: rotate(45deg);
+  }
+
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(360deg);
+  }
+}
+
+/**************************** MEDIA QUERIES *********************/
+
+@media screen and (max-width: 640px) {
   .container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    max-width: 100%;
   }
 
   .wrapperLeft {
-    width: 60%;
-    height: 100%;
-    background-color: #f2f2f2;
+    width: 100%;
   }
 
   .wrapperRight {
-    width: 40%;
-    height: 100%;
-    position: relative;
-    z-index: 10;
-    background-color: transparent;
+    width: 100%;
   }
 
   .box {
-    padding: 2rem 5rem;
-  }
-
-  .top {
-    margin: 0 0 1rem 0;
-  }
-
-  .brandName {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ff000e;
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background-color: #ECEDEF;
-  }
-
-  .titles {
-    margin: 1.5rem 0;
-  }
-
-  .signInCTA {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .signInCTA p {
-    width: max-content;
-    font-size: 1rem;
-    color: #9B9BA5;
-  }
-
-  .signInCTA a {
-    font-weight: bold;
-    color: #ff000e;
-    text-decoration: none;
-    font-size: 1rem;
-    margin-left: 0.5rem;
-  }
-
-  #form {
-    display: flex;
-    flex-direction: column;
-    margin: 1.5rem 0;
-  }
-
-  #form input {
-    margin: 0 0 1.5rem 0;
-  }
-
-  input {
-    padding: 0.6rem 0.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    background-color: #E6EAFB;
-    font-size: 0.8rem;
-  }
-
-  #submit {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    border: none;
-    background-color: #ff000e;
-    opacity: 0.8;
-    padding: 0.8rem 1rem;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    transition: background-color 0.2s ease-in-out;
-    cursor: pointer;
-  }
-
-  #submit:hover {
-    background-color: #fc3e48;
-  }
-
-  .sso {
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .or {
-    font-size: 1rem;
-    color: #9B9BA5;
-  }
-
-  .or::before {
-    content: "-";
-    color: #9B9BA5;
-  } 
-
-  .or::after {
-    content: "-";
-    color: #9B9BA5;
+    padding: 2rem 2rem;
   }
 
   .buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     margin: 1.5rem 0;
   }
 
-  .googleSSO {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #FADCDD;
-    cursor: pointer;
+  .buttons button {
+    margin-bottom: 1rem;
   }
-
-  .googleSSO img {
-    margin-right: 0.5rem;
-  }
-
-  .brandSSO {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #FADCDD;
-    cursor: pointer;
-  }
-
-  .redCircle {
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    transform: rotate(270deg);
-    z-index: -1;
-  }
-  
-  .yellowCircle {
-    position: absolute;
-    bottom: 0%;
-    right: 0%;
-    z-index: -1;
-  }
-  
-  .blueCircle {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: rotate(180deg);
-    z-index: -1;
-  }
-
-  
-  /**************************** STATE *********************/
-
-  .true {
-    border: 1px solid #00FF00;
-  }
-  
-  .false {
-    border: 1px solid #ff3333;
-  }
-  
-  .show {
-    visibility: visible;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  /**************************** MESSAGE BOX *********************/
-
-
-  .messageBox {
-    visibility: hidden;
-    position: absolute;
-    top: 3%;
-    right: 3%;
-    width: 10rem;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .messageBox > p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-  }
-  
-  #success {
-    background-color: #00FF00;
-  }
-  
-  #error {
-    background-color: #ff3333;
-  }
-  
-  #buttonText {
-    color: white;
-  }
-
-    /**************************** SPINNER *********************/
-  
-  #spinner {
-    animation: 2s linear infinite svg-animation;
-    width: 1.3rem;
-    height: auto;
-  }
-  
-  @keyframes svg-animation {
-    0% {
-      transform: rotateZ(0deg);
-    }
-    100% {
-      transform: rotateZ(360deg)
-    }
-  }
-  
-  #circle {
-    animation: 1.4s ease-in-out infinite both circle-animation;
-    display: block;
-    fill: transparent;
-    stroke: white;
-    stroke-linecap: round;
-    stroke-dasharray: 283;
-    stroke-dashoffset: 280;
-    stroke-width: 10px;
-    transform-origin: 50% 50%;
-  }
-  
-  @keyframes circle-animation {
-    0%,
-    25% {
-      stroke-dashoffset: 280;
-      transform: rotate(0);
-    }
-  
-    50%,
-    75% {
-      stroke-dashoffset: 75;
-      transform: rotate(45deg);
-    }
-  
-    100% {
-      stroke-dashoffset: 280;
-      transform: rotate(360deg);
-    }
-  }
-  
-    /**************************** MEDIA QUERIES *********************/
-  
-  @media screen and (max-width: 640px) {
-    .container {
-      flex-direction: column;
-      max-width: 100%;
-    }
-
-    .wrapperLeft {
-      width: 100%;
-    }
-
-    .wrapperRight {
-      width: 100%;
-    }
-
-    .box {
-      padding: 2rem 2rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin: 1.5rem 0;
-    }
-
-    .buttons button {
-      margin-bottom: 1rem;
-    }
-  }
+}
