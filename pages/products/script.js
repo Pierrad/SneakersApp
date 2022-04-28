@@ -176,7 +176,6 @@ async function openModal2(e) {
 
   xInput.addEventListener("input", () => {
     submit.classList.remove("hide");
-    console.log(xInput.value);
     if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
       submit.classList.add("disabled");
     } else {
@@ -281,4 +280,16 @@ const getCurrentPosition = (productId, product) => {
       y: 0
     });
   }
+}
+
+document.getElementById('modalXInput').onkeyup = function(event) {
+  this.value = this.value.replace(/[a-z]/, '');
+  if (["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Backspace"].includes(event.key)) {
+    let errorMessage = document.getElementById("errorMessage");
+    errorMessage.classList.add("hidden-message");
+  } else {
+    let errorMessage = document.getElementById("errorMessage");
+    errorMessage.classList.remove("hidden-message");
+  }
+  
 }

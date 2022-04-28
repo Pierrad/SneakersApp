@@ -112,6 +112,14 @@ body {
   opacity: 0;
 }
 
+.hidden-message {
+  display: none;
+}
+
+.error-message {
+  color: red;
+}
+
 @media screen and (max-width: 640px) {
   .modal-content {
     width: 20rem;
