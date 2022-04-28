@@ -13,7 +13,12 @@
   <link rel="stylesheet" href="../../components/Header/style.css" />
   <link rel="stylesheet" href="../../components/Footer/style.css" />
   <link rel="stylesheet" href="./style.css" />
-  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   crossorigin=""></script>
 </head>
 
 <body>
@@ -27,6 +32,7 @@
       </div>
     </div>
     <button class="loadMore mx-auto border-0 rounded pt-1 pb-1 ps-2 pe-2 mb-4" role="button" id="loadMore">Voir plus...</button>
+    <div id="map"></div>
   </div>
 
 
@@ -46,6 +52,20 @@
           </form>
           <img src="../../assets/images/external_link.svg" alt="External link logo" id="modalExternalLink" class="externalLink position-absolute bottom-0 end-0" />
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasterWrapper" class="position-fixed top-50 end-50" style="z-index: 11">
+    <div id="toaster" data-bs-autohide="false" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex text-center justify-content-center">
+          <input id="latitude" type="number" name="latitude" placeholder="Latitude" class="border-0 p-3 rounded" />
+          <input id="longitude" type="number" name="longitude" placeholder="Longitude" class="border-0 p-3 rounded" />
+          <hr />
+          <button class="modalButton hide rounded border-0 text-white" role="button" id="geolocalization">Position actuelle</button>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>

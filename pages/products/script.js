@@ -1,11 +1,11 @@
-let NUMBER_OF_PRODUCTS = 6
+let NUMBER_OF_PRODUCTS = 5
 
 // ! Attention, user est définie depuis le fichier js/userService.js
 document.getElementById("title").innerHTML = `Bienvenue ${user.username}`;
 
 function generateProductHTML(product) {
   return `
-    <div class="product w-100 d-flex flex-column flex-md-row mb-4 pb-2">
+    <div class="product w-100 d-flex flex-column flex-md-row mb-4 pb-2 position-relative">
       <div class="productImage me-3" role="button" data-product="${product.id}" onclick="openModal(this)">
         <img class="rounded h-auto" width="150px" src="${product.image}" alt="${product.content}">
       </div>
@@ -17,6 +17,9 @@ function generateProductHTML(product) {
           <p class="productPrice mb-2 mb-md-0 p-2 rounded">${product.price}</p>
         </div>
         <p class="productBrand mb-0 rounded pt-1 pb-1 ps-2 pe-2 mb-2">${product.brand}</p>
+      </div>
+      <div class="position-absolute bottom-0 end-0" data-product="${product.id}" onclick="openGeolocalizationModal(this)">
+      <img src="../../assets/images/warning.svg" alt="warningIcone" height="50px" width="50px" />
       </div>
     </div>
   `;
@@ -169,3 +172,18 @@ loadmore.addEventListener('click', (e) => {
 }
 
 })
+
+/* map of the store */
+const map = L.map('map').setView([51.505, -0.09], 13);
+const layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {maxZoom : 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' })
+			.addTo(map);
+
+async function openGeolocalizationModal(e) {
+  const toaster = document.getElementById("toaster");
+
+  const toast = new bootstrap.Toast(toaster);
+  toast.show();
+  const productId = e.dataset.product;
+  const product = await getOneProduct(productId);
+}

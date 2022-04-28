@@ -24,9 +24,7 @@ const callAPI = async (method, url, data) => {
       : Object.keys(data).length !== 0 && { body: JSON.stringify(data) }),
   }
 
-  
   const response = await fetch(`https://m413.joss-coupet.eu/${url}`, fullConfig);
-  console.log(response)
 
   if ((response.status === 500 || response.status === 403 || response.status === 404) && window.location.href !== "/pages/login/index.html") {
     window.location.href = "/pages/login/index.html?showError=1";
