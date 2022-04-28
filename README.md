@@ -19,6 +19,7 @@ Une version en ligne avec les dernières fonctionnalités en cours de développe
 Pour se connecter, il est possible d'utiliser les identifiants suivants : 
 - pierreadrien.vasseur@gmail.com / Azerty@123456
 - wassimbouzakri@icloud.com / Password123@
+- test@tes.com / M0td3p@$$3
 
 ## Bootstrap
 
