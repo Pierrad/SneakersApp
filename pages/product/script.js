@@ -1,6 +1,5 @@
 const urlString = window.location.href
 const url = new URL(urlString);
-console.log(url.searchParams);
 const id = url.searchParams.get("productid");
 
 if (id === null || id === undefined) {

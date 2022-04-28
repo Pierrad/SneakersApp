@@ -78,10 +78,7 @@ body {
   background-color: #ddd765;
 }
 
-#map { 
-  width: 100%;
-  height: 500px; 
-}
+
 
 .show {
   display: flex;
@@ -91,6 +88,12 @@ body {
 .hide {
   display: none;
   opacity: 0;
+}
+
+#map { 
+  width: 100%;
+  height: 500px;
+  margin-bottom: 2rem; 
 }
 
 #toasterWrapper {

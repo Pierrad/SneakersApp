@@ -1,7 +1,5 @@
 let NUMBER_OF_PRODUCTS = 5
 
-/* map of the store */
-
 const MAP = L.map('map').setView([51.505, -0.09], 13);
 const layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             {maxZoom : 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' })
@@ -42,9 +40,11 @@ function addProductToPage(product) {
 
 function generateMarker(product) {
   if (product.x && product.y) {
-    // MAP.refresh();
     const marker = L.marker([product.x, product.y]).addTo(MAP);
-    marker.bindPopup(`<img src="${product.image}" width="300px" height="200px" />`);
+    marker.bindPopup(`<img src="${product.image}" width="200px" height="200px" />`, {
+      minWidth: 200,
+      minHeight: 200,
+    });
   }
 }
 
@@ -155,7 +155,6 @@ async function openModal(e) {
   });
   externalLink.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(productId);
     window.location.href = `/pages/product/index.html?productid=${productId}`;
   });
 }
@@ -213,20 +212,16 @@ function modifyProductWithLocalization(prod) {
     });
 }
 
-
 async function openGeolocalizationModal(e) {
   const productId = e.dataset.product;
   const product = await getOneProduct(productId);
-
-
   const geoLocalizationModal = document.getElementById("geoLocalizationModal");
   const geoLocalizationModalClose = document.getElementById("geoLocalizationModalClose");
   const geoMyLocalization = document.getElementById("geoMyLocalization");
-
   const latitudeInput = document.getElementById("latitude");
   const longitudeInput = document.getElementById("longitude");
   const submitLocalization = document.getElementById("submitLocalization");
-  let inputEvent = new CustomEvent("isSubmitable");
+  const inputEvent = new CustomEvent("isSubmitable");
 
   submitLocalization.disabled = true;
   geoLocalizationModal.classList.add("show");
@@ -235,27 +230,25 @@ async function openGeolocalizationModal(e) {
     geoLocalizationModal.classList.remove("show");
   };
 
-
   latitudeInput.addEventListener("input", function (event) {
     document.dispatchEvent(inputEvent);
-    latitudeInput.classList.remove('is-invalid');
-    console.log("jeee")
-    if (/^\d+\.?\d*$/.test(event.target.value) === false) {
-      submitLocalization.disabled = true;
-      latitudeInput.value = "";
-      latitudeInput.classList.add('is-invalid');
-    }
+    handleCoordInput(event);
   });
   
   longitudeInput.addEventListener('input', function(event) {
     document.dispatchEvent(inputEvent);
-    longitudeInput.classList.remove('is-invalid');
-    if (/^\d+\.?\d*$/.test(event.target.value) === false) {
+    handleCoordInput(event);
+  });
+
+  const handleCoordInput = (event) => {
+    const element = event.target;
+    element.classList.remove('is-invalid');
+    if (/^\d+\.?\d*$/.test(element.value) === false) {
       submitLocalization.disabled = true;
-      longitudeInput.value = "";
-      longitudeInput.classList.add('is-invalid');
+      element.value = "";
+      element.classList.add('is-invalid');
     }
-  })
+  }
   
   document.addEventListener('isSubmitable', function () {
     if (latitudeInput.value !== "" && longitudeInput.value !== "") {
