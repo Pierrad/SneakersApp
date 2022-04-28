@@ -73,11 +73,17 @@
         </div>
         <div class="modal-body position-relative">
           <form class="modalInputs d-flex flex-column">
-            <input class="modalInput mb-3 p-3 border-0 rounded" id="modalXInput" name="x" value="" />
-            <input class="modalInput mb-3 p-3 border-0 rounded" id="modalYInput" name="y" value="" />
-            <button class="modalButton hide rounded border-0 text-white" role="button" id="modalSubmit2">Modifier</button>
+            <input class="modalInput2 mb-3 p-3 border-0 rounded" id="modalXInput" name="x" value="" />
+            <input class="modalInput2 mb-3 p-3 border-0 rounded" id="modalYInput" name="y" value="" />
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="modalButtonPos rounded border-0 text-white" role="button" id="currentPos"><img src="../../assets/images/Map_Pin.svg" alt="External link logo" id="modalExternalLink" class="externalLink position-absolute" style="color: white;"/> &nbsp; Position actuelle</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="modalButtonPos hide rounded border-0 text-white" role="button" id="modalSubmit2">Modifier</button>
+              </div>
+            </div>
           </form>
-          <img src="../../assets/images/external_link.svg" alt="External link logo" id="modalExternalLink" class="externalLink position-absolute bottom-0 end-0" />
         </div>
       </div>
     </div>

@@ -11,6 +11,13 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.disabled {
+  background: #bbbbbb !important;
+  border: 1px solid #bbbbbb !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+}
+
 .numberOfProducts {
   font-size: 14px;
   font-weight: 300;
@@ -62,8 +69,25 @@ body {
   box-sizing: border-box;
 }
 
+.modalInput2 {
+  width: 100%;
+  height: 1rem;
+  font-size: 0.8rem;
+  background-color: #f2f2f2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
 .modalButton {
   width: 10rem;
+  height: 2rem;
+  background: linear-gradient(90deg, rgba(209,55,105,1) 0%, rgba(227,88,103,1) 49%, rgba(234,105,103,1) 100%);
+}
+
+.modalButtonPos {
+  width: 100%;
   height: 2rem;
   background: linear-gradient(90deg, rgba(209,55,105,1) 0%, rgba(227,88,103,1) 49%, rgba(234,105,103,1) 100%);
 }
@@ -94,6 +118,10 @@ body {
   }
 
   .modalInput {
+    width: 15rem;
+  }
+
+  .modalInput2 {
     width: 15rem;
   }
 }

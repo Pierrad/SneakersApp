@@ -14,7 +14,7 @@ function generateProductHTML(product) {
         <div class="productMeta d-flex flex-column flex-md-row align-content-start align-items-md-center justify-content-between mb-2">
           <p class="productId mb-2 mb-md-0">${String(product.id)}</p>
           <p class="productOwner mb-2 mb-md-0">${product.owner}</p>
-          <p class="productCoord mb-2 mb-md-0">GPS: {x: ${String(product.x)}, y: ${String(product.y)}}</p>
+          <p class="productCoord mb-2 mb-md-0">GPS: {x: ${String(parseFloat(product.x).toFixed(2))}, y: ${String(parseFloat(product.y).toFixed(2))}}</p>
           <p class="productPrice mb-2 mb-md-0 p-2 rounded">${product.price}</p>
           <img src="../../assets/images/Triangle_Warning.svg" alt="External link logo" id="modalExternalLink" class="externalLink" style="height: 2em;" data-product="${product.id}" onclick="openModal2(this)"/>
         </div>
@@ -149,6 +149,11 @@ async function openModal(e) {
   });
 }
 
+
+function hasClass(elem, className) {
+  return elem.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(elem.className);
+}
+
 async function openModal2(e) {
   modal2.classList.add("show");
 
@@ -158,28 +163,56 @@ async function openModal2(e) {
   const xInput = document.getElementById("modalXInput");
   const yInput = document.getElementById("modalYInput");
   const submit = document.getElementById("modalSubmit2");
+  const currentPos = document.getElementById("currentPos");
   const externalLink = document.getElementById("modalExternalLink");
   xInput.value = product.x;
   yInput.value = product.y;
 
+  if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+    submit.classList.add("disabled");
+  } else {
+    submit.classList.remove("disabled");
+  }
+
   xInput.addEventListener("input", () => {
     submit.classList.remove("hide");
+    console.log(xInput.value);
+    if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+      submit.classList.add("disabled");
+    } else {
+      submit.classList.remove("disabled");
+    }
   });
+
   yInput.addEventListener("input", () => {
     submit.classList.remove("hide");
+    if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+      submit.classList.add("disabled");
+    } else {
+      submit.classList.remove("disabled");
+    }
   });
 
   submit.addEventListener("click", (e) => {
     e.preventDefault();
-    modifyProduct({
-      productId,
-      name:  product.name,
-      brand: product.brand,
-      price: product.price,
-      x: xInput.value,
-      y: yInput.value
-    });
+    if (!hasClass(submit, "disabled")) {
+      console.log("edited");
+      modifyProduct({
+        productId,
+        name:  product.name,
+        brand: product.brand,
+        price: product.price,
+        x: xInput.value,
+        y: yInput.value
+      });
+    }
   });
+
+  currentPos.addEventListener("click", (e) => {
+    e.preventDefault();
+    getCurrentPosition(productId, product);
+  });
+
   externalLink.addEventListener("click", (e) => {
     e.preventDefault();
     console.log(productId);
@@ -224,3 +257,28 @@ loadmore.addEventListener('click', (e) => {
 }
 
 })
+
+const getCurrentPosition = (productId, product) => {
+  if (navigator.geolocation) {
+    return navigator.geolocation.getCurrentPosition((position)=> {
+        const p=position.coords;
+        modifyProduct({
+          productId,
+          name:  product.name,
+          brand: product.brand,
+          price: product.price,
+          x: p.latitude,
+          y: p.longitude
+        });
+    })
+  } else {
+    modifyProduct({
+      productId,
+      name:  product.name,
+      brand: product.brand,
+      price: product.price,
+      x: 0,
+      y: 0
+    });
+  }
+}
