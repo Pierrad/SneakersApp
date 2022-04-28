@@ -78,8 +78,6 @@ body {
   background-color: #ddd765;
 }
 
-
-
 .show {
   display: flex;
   opacity: 1;
@@ -103,7 +101,6 @@ body {
 #warningBox {
   cursor: pointer;
 }
-
 
 button:disabled,
 button[disabled] {

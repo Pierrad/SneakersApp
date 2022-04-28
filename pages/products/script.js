@@ -1,13 +1,17 @@
 let NUMBER_OF_PRODUCTS = 5
 
-const MAP = L.map('map').setView([51.505, -0.09], 13);
-const layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {maxZoom : 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' })
-			.addTo(MAP);
+//
+// MAP
+//
+const MAP = L.map('map').setView([48, 2], 5);
+const layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom : 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(MAP);
 
 // ! Attention, user est définie depuis le fichier js/userService.js
 document.getElementById("title").innerHTML = `Bienvenue ${user.username}`;
 
+//
+// HTML Generation
+//
 function generateProductHTML(product) {
   return `
     <div class="product w-100 d-flex flex-column flex-md-row mb-4 pb-2 position-relative">
@@ -24,7 +28,7 @@ function generateProductHTML(product) {
         <p class="productBrand mb-0 rounded pt-1 pb-1 ps-2 pe-2 mb-2">${product.brand}</p>
       </div>
       ${product.x && product.y ? ``: `
-        <div id="warningBox" class="position-absolute bottom-0 end-0" data-product="${product.id}" onclick="openGeolocalizationModal(this)">
+        <div id="warningBox" class="position-absolute bottom-0 end-0 mb-2 me-1" data-product="${product.id}" onclick="openGeolocalizationModal(this)">
           <img src="../../assets/images/warning.svg" alt="warningIcone" height="50px" width="50px" />
         </div>
       `}
@@ -36,6 +40,7 @@ function addProductToPage(product) {
   const productHTML = generateProductHTML(product);
   const productContainer = document.getElementsByClassName("productsList")[0];
   productContainer.innerHTML += productHTML;
+  generateMarker(product)
 }
 
 function generateMarker(product) {
@@ -53,6 +58,9 @@ function showNumberOfProducts(number) {
   numberOfProducts.innerHTML = `${number} produits`;
 }
 
+//
+// API
+//
 function getProducts() {
   callAPI("GET", 'products', {})
     .then((res) => {
@@ -75,7 +83,6 @@ function getProducts() {
       newProducts.forEach((newP, item) => {
         if(item< NUMBER_OF_PRODUCTS){
           addProductToPage(newP)
-          generateMarker(newP)
         }
       });
       localStorage.setItem('products', JSON.stringify(newProducts))
@@ -94,6 +101,8 @@ function getOneProduct(productId) {
         image: product.image,
         owner: product.owner,
         price: content.price,
+        x: content.x,
+        y: content.y,
       };
     });
 
@@ -101,11 +110,12 @@ function getOneProduct(productId) {
 }
 
 function modifyProduct(prod) {
-  callAPI("POST", `products/${prod.productId}`, {
+  callAPI("POST", `products/${prod.id}`, {
     content: {
       name: prod.name,
       brand: prod.brand,
-      price: prod.price
+      price: prod.price,
+      ...(prod.x && prod.y ? { x: prod.x, y: prod.y } : {})
     }
   })
     .then((res) => {
@@ -117,8 +127,12 @@ function modifyProduct(prod) {
     });
 }
 
+
+//
+// MODALS
+//
 const modal = document.getElementById("myModal");
-const close = document.getElementById("modalClose");
+const geoLocalizationModal = document.getElementById("geoLocalizationModal");
 
 async function openModal(e) {
   modal.classList.add("show");
@@ -131,6 +145,8 @@ async function openModal(e) {
   const priceInput = document.getElementById("modalPriceInput");
   const submit = document.getElementById("modalSubmit");
   const externalLink = document.getElementById("modalExternalLink");
+  const modalClose = document.getElementById("modalClose");
+
   nameInput.value = product.name;
   brandInput.value = product.brand;
   priceInput.value = product.price;
@@ -147,7 +163,7 @@ async function openModal(e) {
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     modifyProduct({
-      productId,
+      id: productId,
       name: nameInput.value,
       brand: brandInput.value,
       price: priceInput.value,
@@ -157,84 +173,43 @@ async function openModal(e) {
     e.preventDefault();
     window.location.href = `/pages/product/index.html?productid=${productId}`;
   });
-}
-
-close.onclick = function () {
-  modal.classList.remove("show");
-};
-
-window.onclick = function (event) {
-  if (event.target == modal) {
+  modalClose.onclick = function () {
     modal.classList.remove("show");
-  }
-};
-
-getProducts();
-
-const loadmore = document.querySelector('.loadMore');
-
-loadmore.addEventListener('click', (e) => {
-  const productsList = JSON.parse(localStorage.getItem('products'))
-  if(productsList !== undefined){
-    for(let i = NUMBER_OF_PRODUCTS; i < NUMBER_OF_PRODUCTS+4; i++){
-      addProductToPage(productsList[i])
-      generateMarker(productsList[i])
-    }
-    NUMBER_OF_PRODUCTS += 4
-    if(NUMBER_OF_PRODUCTS + 4 >= productsList.length) {
-      for(let j = NUMBER_OF_PRODUCTS; j < productsList.length; j++){
-        addProductToPage(productsList[j])
-        generateMarker(productsList[j])
-      }
-      NUMBER_OF_PRODUCTS = NUMBER_OF_PRODUCTS+(productsList.length-NUMBER_OF_PRODUCTS)
-      e.target.style.display = 'none';
-    }
+  };
 }
 
-})
+const showError = (error) => {
+  const message = document.getElementById("toast-text");
+  message.innerHTML = error;
 
-function modifyProductWithLocalization(prod) {
-  callAPI("POST", `products/${prod.id}`, {
-    content: {
-      name: prod.name,
-      brand: prod.brand,
-      price: prod.price,
-      x: prod.x,
-      y: prod.y,
-    }
-  })
-    .then((res) => {
-      if (res.success === true) {
-        window.location.reload();
-      } else {
-        console.warn("Error while updating product");
-      }
-    });
+  const toaster = document.getElementById('toaster');
+  toaster.classList.add("bg-danger");
+  const toast = new bootstrap.Toast(toaster);
+  toast.show();
 }
 
 async function openGeolocalizationModal(e) {
   const productId = e.dataset.product;
   const product = await getOneProduct(productId);
-  const geoLocalizationModal = document.getElementById("geoLocalizationModal");
-  const geoLocalizationModalClose = document.getElementById("geoLocalizationModalClose");
-  const geoMyLocalization = document.getElementById("geoMyLocalization");
+  geoLocalizationModal.classList.add("show");
+
+  const ctaMyLocalization = document.getElementById("geoMyLocalization");
   const latitudeInput = document.getElementById("latitude");
   const longitudeInput = document.getElementById("longitude");
   const submitLocalization = document.getElementById("submitLocalization");
+  const geoModalClose = document.getElementById("geoModalClose");
+
+  // Custom event
   const inputEvent = new CustomEvent("isSubmitable");
 
+  // By default
   submitLocalization.disabled = true;
-  geoLocalizationModal.classList.add("show");
 
-  geoLocalizationModalClose.onclick = function () {
-    geoLocalizationModal.classList.remove("show");
-  };
-
+  // Event listeners
   latitudeInput.addEventListener("input", function (event) {
     document.dispatchEvent(inputEvent);
     handleCoordInput(event);
   });
-  
   longitudeInput.addEventListener('input', function(event) {
     document.dispatchEvent(inputEvent);
     handleCoordInput(event);
@@ -248,7 +223,7 @@ async function openGeolocalizationModal(e) {
       element.value = "";
       element.classList.add('is-invalid');
     }
-  }
+  };
   
   document.addEventListener('isSubmitable', function () {
     if (latitudeInput.value !== "" && longitudeInput.value !== "") {
@@ -258,17 +233,57 @@ async function openGeolocalizationModal(e) {
     }
   });
 
-  geoMyLocalization.addEventListener('click', (e) => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      modifyProductWithLocalization({ ...product, x: position.coords.latitude, y: position.coords.longitude });
-      geoLocalizationModal.classList.remove("show");
-    }, function (error) {
-      alert("Veuillez accepter la géolocalisation"); 
-    });
+  ctaMyLocalization.addEventListener('click', (e) => {
+    navigator.geolocation.getCurrentPosition(handleLocalizationUpdate, () => showError("Veuillez activer la localisation du navigateur."));
   });
 
   submitLocalization.addEventListener("click", (e) => {
-    modifyProductWithLocalization({ ...product, x: latitudeInput.value, y: longitudeInput.value });
-    geoLocalizationModal.classList.remove("show");
+    handleLocalizationUpdate({ coords : { latitude: latitudeInput.value, longitude: longitudeInput.value } });
   });
+
+  const handleLocalizationUpdate = (position) => {
+    modifyProduct({ ...product, x: position.coords.latitude, y: position.coords.longitude });
+    geoLocalizationModal.classList.remove("show");
+  }
+
+  geoModalClose.onclick = function () {
+    geoLocalizationModal.classList.remove("show");
+  };
 }
+
+
+window.onclick = function (event) {
+  if (event.target == modal || event.target == geoLocalizationModal) {
+    modal.classList.remove("show");
+    geoLocalizationModal.classList.remove("show");
+  }
+};
+
+
+//
+// LOAD MORE
+//
+const loadmore = document.getElementById('loadMore');
+
+loadmore.addEventListener('click', (e) => {
+  const productsList = JSON.parse(localStorage.getItem('products'))
+  if(productsList !== undefined) {
+    for(let i = NUMBER_OF_PRODUCTS; i < NUMBER_OF_PRODUCTS+4; i++){
+      addProductToPage(productsList[i])
+    }
+    NUMBER_OF_PRODUCTS += 4
+    if(NUMBER_OF_PRODUCTS + 4 >= productsList.length) {
+      for(let j = NUMBER_OF_PRODUCTS; j < productsList.length; j++){
+        addProductToPage(productsList[j])
+      }
+      NUMBER_OF_PRODUCTS = NUMBER_OF_PRODUCTS+(productsList.length-NUMBER_OF_PRODUCTS)
+      e.target.style.display = 'none';
+    }
+  }
+});
+
+
+//
+// Start
+//
+getProducts();

@@ -5,7 +5,7 @@ const validateEmail = (email) => {
 };
 
 // On vérifie si on a une erreur en paramètre de la page.
-const urlString = window.location.href
+const urlString = window.location.href;
 const url = new URL(urlString);
 const hasError = url.searchParams.get("showError");
 
