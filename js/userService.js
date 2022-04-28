@@ -3,7 +3,7 @@ window.getCookie = function(name) {
   if (match) return match[2];
 }
 
-if ((localStorage.getItem("token") === null || document.cookie.indexOf("authToken") === -1 || getCookie("authToken") === undefined)  && window.location.href !== "/pages/login/index.html") {
+if ((localStorage.getItem("user") === null || document.cookie.indexOf("authToken") === -1 || getCookie("authToken") === undefined)  && window.location.href !== "/pages/login/index.html") {
   window.location.href = "/pages/login/index.html";
 }
 
