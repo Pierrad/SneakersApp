@@ -4,7 +4,7 @@ let NUMBER_OF_PRODUCTS = 5
 document.getElementById("title").innerHTML = `Bienvenue ${user.username}`;
 
 function generateProductHTML(product) {
-  return `
+  let res = `
     <div class="product w-100 d-flex flex-column flex-md-row mb-4 pb-2">
       <div class="productImage me-3" role="button" data-product="${product.id}" onclick="openModal(this)">
         <img class="rounded h-auto" width="150px" src="${product.image}" alt="${product.content}">
@@ -16,12 +16,18 @@ function generateProductHTML(product) {
           <p class="productOwner mb-2 mb-md-0">${product.owner}</p>
           <p class="productCoord mb-2 mb-md-0">GPS: {x: ${String(parseFloat(product.x).toFixed(2))}, y: ${String(parseFloat(product.y).toFixed(2))}}</p>
           <p class="productPrice mb-2 mb-md-0 p-2 rounded">${product.price}</p>
-          <img src="../../assets/images/Triangle_Warning.svg" alt="External link logo" id="modalExternalLink" class="externalLink" style="height: 2em;" data-product="${product.id}" onclick="openModal2(this)"/>
+          `
+
+  if ((parseFloat(product.x) === 0 && parseFloat(product.y) === 0) || product.x.length === 0 || product.y.length === 0) {
+    res = res + `<img src="../../assets/images/Triangle_Warning.svg" alt="External link logo" id="modalExternalLink" class="externalLink" style="height: 2em;" data-product="${product.id}" onclick="openModal2(this)"/>`
+  }
+  res = res + `
         </div>
         <p class="productBrand mb-0 rounded pt-1 pb-1 ps-2 pe-2 mb-2">${product.brand}</p>
       </div>
     </div>
   `;
+  return res;
 }
 
 function addProductToPage(product) {
@@ -168,7 +174,7 @@ async function openModal2(e) {
   xInput.value = product.x;
   yInput.value = product.y;
 
-  if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+  if ((parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) || xInput.value.length === 0 || yInput.value.length === 0) {
     submit.classList.add("disabled");
   } else {
     submit.classList.remove("disabled");
@@ -176,7 +182,7 @@ async function openModal2(e) {
 
   xInput.addEventListener("input", () => {
     submit.classList.remove("hide");
-    if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+    if ((parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) || xInput.value.length === 0 || yInput.value.length === 0) {
       submit.classList.add("disabled");
     } else {
       submit.classList.remove("disabled");
@@ -185,7 +191,7 @@ async function openModal2(e) {
 
   yInput.addEventListener("input", () => {
     submit.classList.remove("hide");
-    if (parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) {
+    if ((parseFloat(xInput.value) === 0 && parseFloat(yInput.value) === 0) || xInput.value.length === 0 || yInput.value.length === 0) {
       submit.classList.add("disabled");
     } else {
       submit.classList.remove("disabled");
@@ -283,8 +289,9 @@ const getCurrentPosition = (productId, product) => {
 }
 
 document.getElementById('modalXInput').onkeyup = function(event) {
-  this.value = this.value.replace(/[a-z]/, '');
-  if (["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Backspace"].includes(event.key)) {
+  this.value = this.value.replace(/[a-z\W]/, '');
+  console.log(event.key)
+  if (["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Backspace", "Shift", "CapsLock", "Enter"].includes(event.key)) {
     let errorMessage = document.getElementById("errorMessage");
     errorMessage.classList.add("hidden-message");
   } else {

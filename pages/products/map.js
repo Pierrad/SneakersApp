@@ -1,4 +1,4 @@
-var map = L.map('map').setView([51.505, -0.09], 4);
+var map = L.map('map').setView([51.505, -0.09], 8);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -15,10 +15,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 getProducts();
 let items = JSON.parse(localStorage.getItem('products'));
 
+
 for (let i = 0; i < items.length; i++) {
     if (parseFloat(items[i].x) !== 0 && parseFloat(items[i].y) !== 0) {
         L.marker([parseFloat(items[i].x), parseFloat(items[i].y)]).addTo(map)
-            .bindPopup(items[i].name)
+            .bindPopup(`<img src="${items[i].image}" width="100px" height="100px" />`, {
+                minWidth: 100,
+                minHeight: 100,
+              })
             .openPopup();
     }
 
