@@ -97,9 +97,17 @@ body {
   transform: translate(50%, 50%);
 }
 
-.toast-body {
-  width: 20rem;
-  height: 20rem;
+#warningBox {
+  cursor: pointer;
+}
+
+
+button:disabled,
+button[disabled] {
+  background: #bbbbbb;
+  border: 1px solid #bbbbbb;
+  color: #666666;
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 640px) {
